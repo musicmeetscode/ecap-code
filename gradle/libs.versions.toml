@@ -2,7 +2,7 @@
 agp = "8.5.2"
 glide = "4.16.0"
 gson = "2.11.0"
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -13,6 +13,8 @@ constraintlayout = "2.2.0"
 material = "1.12.0"
 navigationFragmentKtx = "2.8.4"
 preferenceKtx = "1.2.1"
+roomCompiler = "2.6.1"
+roomRuntimeVersion = "2.6.1"
 volley = "1.2.1"
 
 [libraries]
@@ -30,6 +32,8 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 volley = { module = "com.android.volley:volley", version.ref = "volley" }
 
 [plugins]

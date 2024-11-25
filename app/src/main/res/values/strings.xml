@@ -20,4 +20,24 @@
     <string name="district">District</string>
     <string name="religion">Religion</string>
     <string name="next">Next</string>
+    <string name="patients">Patients</string>
+    <string name="feedback">Feedback</string>
+    <string name="training">Training</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_new">Register New</string>
+    <string name="please_login">Please Login to your account</string>
+    <string name="your_username">Your Username</string>
+    <string name="your_password">Your password</string>
+    <string name="sign_in">Sign in</string>
+
+    <string name="warning_form_closing">Warning: Form closing</string>
+    <string name="are_you_sure_you_want_to_exit_this_form_you_will_lose_all_and_any_data_that_you_had_already_filled">Are you sure you want to exit this form? You will lose all and any data that you had already filled</string>
+    <string name="no_stay_on_page">NO. STAY ON PAGE</string>
+    <string name="yes_leave">YES. LEAVE</string>
+    <string name="account">Logout</string>
+
+    <string name="logout_warning">Are you sure you want to logout? You will loose all saved data</string>
+    <string name="yes_logout">Yes. Log me out</string>
+    <string name="cancel">Cancel</string>
 </resources>
