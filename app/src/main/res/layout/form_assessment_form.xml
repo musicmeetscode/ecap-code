@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="assessment"
+            type="ug.global.ecap_code.database.AssessmentForm" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:text="@string/next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup12" />
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textStyle="bold"
+                app:counter="2."
+                app:header="@string/_2_signs_of_dementia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchMaterial3" />
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="276dp"
+                android:textStyle="bold"
+                app:counter="1."
+                app:header="@string/dementia_assessmet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:checked="@={assessment.forgetfulness}"
+                android:text="@string/forgetfulness"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaterial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:checked="@={assessment.apathy}"
+                android:text="@string/apathy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaterial2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:checked="@={assessment.emotion}"
+                android:text="@string/emotion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchMaterial" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaterial3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="192dp"
+                android:checked="@={assessment.activities}"
+                android:text="@string/activities"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchMaterial2" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/memoryGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:defaultChecked="no"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:text="@string/memory_problems" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/activityGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/memoryGroup"
+                app:text="@string/key_roles" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/progressingGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:text="@string/progressing" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/abruptGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressingGroup"
+                app:text="@string/any_of" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/depressionGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/abruptGroup"
+                app:text="@string/depress" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ageGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:text="@string/other_any" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ageGroup"
+                app:text="@string/anaemia">
+
+            </ug.global.ecap_code.views.EcapRadioGroup>
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textStyle="bold"
+                app:counter="3."
+                app:header="@string/_3_explanation_for_symptoms"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activityGroup" />
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:counter="4."
+                app:header="@string/_4_other_medical_issues"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/depressionGroup">
+
+            </ug.global.ecap_code.views.EcapTextHeader>
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup7"
+                app:text="@string/cardio">
+
+            </ug.global.ecap_code.views.EcapRadioGroup>
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textStyle="bold"
+                app:counter="5."
+                app:header="@string/caretaker_needs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup8" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"
+                app:text="@string/caretaker" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup9"
+                app:text="@string/care_mood" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup10"
+                app:text="@string/care_income" />
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textStyle="bold"
+                app:counter="6."
+                app:header="@string/_5_behavioral_or_pyscological_symptoms"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup11" />
+
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"
+                app:text="@string/behavior" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="activityGroup,progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="depressionGroup,ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="ecapRadioGroup7,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</layout>

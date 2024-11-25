@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EcapRadioGroup">
+        <attr name="text" format="string" />
+        <attr name="defaultChecked" format="enum">
+            <enum name="yes" value="1" />
+            <enum name="no" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="EcapTextHeader">
+        <attr name="counter" format="string" />
+        <attr name="header" format="string" />
+    </declare-styleable>
+</resources>

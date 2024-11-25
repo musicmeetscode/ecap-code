@@ -27,8 +27,8 @@ interface EcapDAO {
 }
 
 @Database(
-    entities = [Patient::class, FillerData::class],
-    version = 4,
+    entities = [Patient::class, FillerData::class, AssessmentForm::class, VisitInfo::class],
+    version = 5,
 )
 abstract class EcapDatabase : RoomDatabase() {
     abstract fun ecapDao(): EcapDAO

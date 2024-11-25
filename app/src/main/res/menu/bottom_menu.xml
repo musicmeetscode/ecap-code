@@ -6,10 +6,10 @@
         android:title="@string/patients" />
     <item
         android:id="@+id/trainingFragment"
-        android:icon="@drawable/baseline_credit_card_24"
+        android:icon="@drawable/baseline_school_24"
         android:title="@string/training" />
     <item
         android:id="@+id/feedbackFragment"
-        android:icon="@drawable/baseline_credit_card_24"
+        android:icon="@drawable/baseline_animation_24"
         android:title="@string/feedback" />
 </menu>

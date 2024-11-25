@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import ug.global.ecap_code.databinding.PatientFormBinding
+import ug.global.ecap_code.database.Patient
+import ug.global.ecap_code.databinding.FormPatientFormBinding
 import ug.global.ecap_code.util.PatientDataCallBacks
 
 class NewPatientFragment(private var callbacks: PatientDataCallBacks) : Fragment() {
-    val binding by lazy { PatientFormBinding.inflate(layoutInflater) }
+    val binding by lazy { FormPatientFormBinding.inflate(layoutInflater) }
+    val patient = Patient()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -17,6 +19,8 @@ class NewPatientFragment(private var callbacks: PatientDataCallBacks) : Fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.patient = patient
+
 //        Fetch filler data
         arrayOf(
             "suffix" to binding.suffix,
@@ -24,7 +28,7 @@ class NewPatientFragment(private var callbacks: PatientDataCallBacks) : Fragment
             "gender" to binding.sex,
             "bloodgroup" to binding.bloocGroup,
             "maritalstatus" to binding.maritalStatus,
-            "nationality" to binding.nationality,
+            "country" to binding.nationality,
             "district" to binding.district,
             "religion" to binding.religion,
             "tribe" to binding.tribe
