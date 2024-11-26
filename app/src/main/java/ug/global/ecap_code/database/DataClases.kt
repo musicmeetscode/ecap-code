@@ -134,6 +134,10 @@ class QuizItem(
     @ColumnInfo
     var id: Int = 0
 
+    fun getQId(): String {
+        return "QN. ${this.id}"
+    }
+
     fun getOptionVisibility(optionIndex: Int): Int {
         return when (optionIndex) {
             1 -> if (options1.isNotBlank()) View.VISIBLE else View.GONE

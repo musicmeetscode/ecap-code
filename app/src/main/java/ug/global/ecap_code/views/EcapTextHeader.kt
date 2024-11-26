@@ -28,12 +28,15 @@ class EcapTextHeader @JvmOverloads constructor(
         // Handle any custom attributes (if needed)
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.EcapTextHeader, 0, 0)
-            counter.text = typedArray.getString(R.styleable.EcapTextHeader_counter) ?: ""
-            header.text = typedArray.getString(R.styleable.EcapTextHeader_header) ?: "  "
+            counter.text = typedArray.getString(R.styleable.EcapTextHeader_counter) ?: "  "
+            header.text = typedArray.getString(R.styleable.EcapTextHeader_header) ?: ""
             typedArray.recycle()
         }
     }
 
+    fun setHeader(string: String) {
+        header.text = string
+    }
 
 }
 

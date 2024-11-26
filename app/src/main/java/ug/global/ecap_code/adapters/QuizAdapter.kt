@@ -19,10 +19,6 @@ class QuizAdapter(private var quizzes: ArrayList<QuizItem>, var context: Context
     RecyclerView.Adapter<QuizAdapter.ChatsViewHolder>() {
     class ChatsViewHolder(var binding: AdapterQuizItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    init {
-        this.setHasStableIds(true)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsViewHolder {
         return ChatsViewHolder(
             DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.adapter_quiz_item, parent, false)
@@ -30,8 +26,9 @@ class QuizAdapter(private var quizzes: ArrayList<QuizItem>, var context: Context
     }
 
     override fun onBindViewHolder(holder: ChatsViewHolder, position: Int) {
-        val quiz = quizzes[holder.adapterPosition]
+        val quiz = quizzes[position]
         holder.binding.quiz = quiz
+        holder.binding.ecapTextHeader2.setHeader(quiz.getQId())
         val checked = arrayListOf<String>()
         if (!quiz.isAnswerChecked) {
             try {

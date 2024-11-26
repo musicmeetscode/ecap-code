@@ -29,9 +29,8 @@ class ActivityQuiz : AppCompatActivity() {
         binding.recyclerView.adapter = quizAdapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.closeQuiz.setOnClickListener {
-
             if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_quizzed_", true)) {
-                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("not_quizzed", false).apply()
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("not_quizzed_", false).apply()
                 finish()
                 startActivity(Intent(this, ActivityMhGap::class.java))
             } else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_trained", true)) {
