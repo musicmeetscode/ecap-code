@@ -3,7 +3,6 @@ package ug.global.ecap_code
 import android.content.DialogInterface.BUTTON_NEGATIVE
 import android.content.DialogInterface.BUTTON_POSITIVE
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.activity.addCallback
@@ -83,7 +82,6 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
         val items = ArrayList<FillerData>()
         lifecycleScope.launch(IO) {
             val inner = EcapDatabase.getInstance(this@DataActivity).ecapDao().getFillerData(type)
-            Log.e("TAG", type + "getFillerData: " + inner)
             items.addAll(inner)
             MainScope().launch {
                 val adapter = ArrayAdapter(this@DataActivity, android.R.layout.simple_list_item_1, items)

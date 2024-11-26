@@ -116,3 +116,43 @@ data class Patient(
 
 }
 
+@Entity
+class QuizItem(
+    @ColumnInfo var question: String,
+    @ColumnInfo var options1: String,
+    @ColumnInfo var options2: String,
+    @ColumnInfo var options3: String,
+    @ColumnInfo var options4: String,
+    @ColumnInfo var options5: String,
+    @ColumnInfo var options6: String,
+    @ColumnInfo var options7: String,
+    @ColumnInfo var answer: String,
+    @ColumnInfo(defaultValue = "") var checked: String = "",
+    @ColumnInfo(defaultValue = "") var postChecked: String = ""
+) {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo
+    var id: Int = 0
+
+    fun getOptionVisibility(optionIndex: Int): Int {
+        return when (optionIndex) {
+            1 -> if (options1.isNotBlank()) View.VISIBLE else View.GONE
+            2 -> if (options2.isNotBlank()) View.VISIBLE else View.GONE
+            3 -> if (options3.isNotBlank()) View.VISIBLE else View.GONE
+            4 -> if (options4.isNotBlank()) View.VISIBLE else View.GONE
+            5 -> if (options5.isNotBlank()) View.VISIBLE else View.GONE
+            6 -> if (options6.isNotBlank()) View.VISIBLE else View.GONE
+            7 -> if (options7.isNotBlank()) View.VISIBLE else View.GONE
+            else -> View.GONE
+        }
+    }
+
+    @ColumnInfo
+    var timeStamp: Long = System.currentTimeMillis()
+
+    val isAnswerChecked: Boolean
+        get() = checked.isEmpty()
+
+}
+
+data class PatientHolder(var name: String, var hash: String, var created: String, var id: Int)

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ecap-CODE</string>
+    <string name="app_name">eCap-CoDe</string>
     <string name="prefix">Prefix</string>
     <string name="suffix">Suffix</string>
     <string name="blood_group">Blood Group</string>
@@ -20,11 +20,11 @@
     <string name="district">District</string>
     <string name="religion">Religion</string>
     <string name="next">Next</string>
-    <string name="patients">Patients</string>
+    <string name="patients">Data Capture</string>
     <string name="feedback">Feedback</string>
     <string name="training">Training</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">eCap-CoDe</string>
     <string name="register_new">Register New</string>
     <string name="please_login">Please Login to your account</string>
     <string name="your_username">Your Username</string>
@@ -82,4 +82,19 @@
     <string name="_5_behavioral_or_pyscological_symptoms">5. Behavioral or Pyscological symptoms</string>
     <string name="behavior">Behavioural symptoms, e.g.\nWandering\nNight-time disturbance\nAgitation\nAggression\n\nPsychological symptoms, e.g.\nHallucinations\nDelusions\nAnxiety\nUncontrollable emotional outbursts</string>
     <string name="occupation">Occupation</string>
+    <string name="take_quiz">Take Quiz</string>
+    <string name="dementia_management_care"><![CDATA[Dementia Management & care]]></string>
+    <string name="dementia_assessment">Dementia Assessment</string>
+    <string name="feedback_on_your_performance_on_demetia_management">Feedback on your performance on demetia management</string>
+    <string name="strengths">Your Strengths</string>
+    <string name="improve">Areas to improve</string>
+    <string name="finish_assessement">Finish Assessement</string>
+    <string name="dementia_assessment_quiz">Dementia Assessment Qiuz</string>
+    <string name="your_anser_was_1_d_2_s">Your anser was: %1$d - %2$s</string>
+    <string name="welcome">Welcome.</string>
+    <string name="please_complete_the_quiz_below_to_acess_app_content">Please complete the quiz below to acess app content.</string>
+    <string name="next_page">Next Page</string>
+    <string name="previous_page">Previous Page</string>
+    <string name="school_timetable">"mhGap Training Content "</string>
+    <string name="complete_module">Complete Module ...</string>
 </resources>

@@ -1,0 +1,507 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 7,
+    "identityHash": "fdbccda8b6810eec64f8c3697f8bcf4b",
+    "entities": [
+      {
+        "tableName": "Patient",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`firstName` TEXT NOT NULL, `lastName` TEXT NOT NULL, `otherName` TEXT NOT NULL, `sexGender` TEXT NOT NULL, `ninPassport` TEXT NOT NULL, `phoneNumber` TEXT NOT NULL, `suffix` TEXT NOT NULL, `prefix` TEXT NOT NULL, `bloodGroup` TEXT NOT NULL, `maritalStatus` TEXT NOT NULL, `occupation` TEXT NOT NULL, `dateOfBirth` TEXT NOT NULL, `age` TEXT NOT NULL, `tribe` TEXT NOT NULL, `mainLanguageSpoken` TEXT NOT NULL, `nationality` TEXT NOT NULL, `district` TEXT NOT NULL, `village` TEXT NOT NULL, `religion` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timeStamp` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "firstName",
+            "columnName": "firstName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "lastName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "otherName",
+            "columnName": "otherName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sexGender",
+            "columnName": "sexGender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ninPassport",
+            "columnName": "ninPassport",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "suffix",
+            "columnName": "suffix",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prefix",
+            "columnName": "prefix",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bloodGroup",
+            "columnName": "bloodGroup",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maritalStatus",
+            "columnName": "maritalStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "occupation",
+            "columnName": "occupation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateOfBirth",
+            "columnName": "dateOfBirth",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "age",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tribe",
+            "columnName": "tribe",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mainLanguageSpoken",
+            "columnName": "mainLanguageSpoken",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nationality",
+            "columnName": "nationality",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "district",
+            "columnName": "district",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "village",
+            "columnName": "village",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "religion",
+            "columnName": "religion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeStamp",
+            "columnName": "timeStamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "FillerData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dataid` INTEGER NOT NULL, `name` TEXT NOT NULL, `others` TEXT NOT NULL, `type` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "dataid",
+            "columnName": "dataid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "others",
+            "columnName": "others",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AssessmentForm",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`forgetfulness` INTEGER NOT NULL, `apathy` INTEGER NOT NULL, `emotion` INTEGER NOT NULL, `activities` INTEGER NOT NULL, `memoryProblems` TEXT NOT NULL, `keyRoles` TEXT NOT NULL, `progressing` TEXT NOT NULL, `anyOf` TEXT NOT NULL, `depress` TEXT NOT NULL, `otherAny` TEXT NOT NULL, `anaemia` TEXT NOT NULL, `cardio` TEXT NOT NULL, `caretaker` TEXT NOT NULL, `careMood` TEXT NOT NULL, `careIncome` TEXT NOT NULL, `behavior` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `patient` INTEGER NOT NULL DEFAULT 0)",
+        "fields": [
+          {
+            "fieldPath": "forgetfulness",
+            "columnName": "forgetfulness",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apathy",
+            "columnName": "apathy",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emotion",
+            "columnName": "emotion",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activities",
+            "columnName": "activities",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "memoryProblems",
+            "columnName": "memoryProblems",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyRoles",
+            "columnName": "keyRoles",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "progressing",
+            "columnName": "progressing",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "anyOf",
+            "columnName": "anyOf",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "depress",
+            "columnName": "depress",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "otherAny",
+            "columnName": "otherAny",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "anaemia",
+            "columnName": "anaemia",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cardio",
+            "columnName": "cardio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "caretaker",
+            "columnName": "caretaker",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "careMood",
+            "columnName": "careMood",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "careIncome",
+            "columnName": "careIncome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "behavior",
+            "columnName": "behavior",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "patient",
+            "columnName": "patient",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "VisitInfo",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`visitReason` TEXT, `chiefComplaint` TEXT, `illnessHistory` TEXT, `reviewOfSystems` TEXT, `physicalExam` TEXT, `triage` TEXT, `attendance` TEXT, `specialProgram` TEXT, `encounterClass` TEXT, `admissionType` TEXT, `encounterType` TEXT, `visitStatus` TEXT, `modeOfArrival` TEXT, `levelOfCare` TEXT, `patientCondition` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `patient` INTEGER NOT NULL DEFAULT 0)",
+        "fields": [
+          {
+            "fieldPath": "visitReason",
+            "columnName": "visitReason",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "chiefComplaint",
+            "columnName": "chiefComplaint",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "illnessHistory",
+            "columnName": "illnessHistory",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reviewOfSystems",
+            "columnName": "reviewOfSystems",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "physicalExam",
+            "columnName": "physicalExam",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "triage",
+            "columnName": "triage",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "attendance",
+            "columnName": "attendance",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "specialProgram",
+            "columnName": "specialProgram",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "encounterClass",
+            "columnName": "encounterClass",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "admissionType",
+            "columnName": "admissionType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "encounterType",
+            "columnName": "encounterType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "visitStatus",
+            "columnName": "visitStatus",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "modeOfArrival",
+            "columnName": "modeOfArrival",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "levelOfCare",
+            "columnName": "levelOfCare",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "patientCondition",
+            "columnName": "patientCondition",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "patient",
+            "columnName": "patient",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "QuizItem",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`question` TEXT NOT NULL, `options1` TEXT NOT NULL, `options2` TEXT NOT NULL, `options3` TEXT NOT NULL, `options4` TEXT NOT NULL, `answer` TEXT NOT NULL, `checked` TEXT NOT NULL DEFAULT '', `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timeStamp` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "question",
+            "columnName": "question",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "options1",
+            "columnName": "options1",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "options2",
+            "columnName": "options2",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "options3",
+            "columnName": "options3",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "options4",
+            "columnName": "options4",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "answer",
+            "columnName": "answer",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "checked",
+            "columnName": "checked",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "''"
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeStamp",
+            "columnName": "timeStamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fdbccda8b6810eec64f8c3697f8bcf4b')"
+    ]
+  }
+}

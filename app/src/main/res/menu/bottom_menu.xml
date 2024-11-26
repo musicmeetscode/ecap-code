@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/patientsFragment"
-        android:icon="@drawable/baseline_person_24"
-        android:title="@string/patients" />
-    <item
         android:id="@+id/trainingFragment"
         android:icon="@drawable/baseline_school_24"
         android:title="@string/training" />
+    <item
+        android:id="@+id/patientsFragment"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/patients" />
     <item
         android:id="@+id/feedbackFragment"
         android:icon="@drawable/baseline_animation_24"

@@ -16,8 +16,17 @@ interface EcapDAO {
     @Query("DELETE FROM FillerData")
     fun deleteFillers()
 
+    @Query("DELETE FROM QuizItem")
+    fun deleteQuiz()
+
     @Upsert
     fun addFillerData(fillerData: FillerData)
+
+    @Upsert
+    fun addQuiz(quiz: QuizItem)
+
+    @Query("SELECT * FROM QuizItem")
+    fun getQuiz(): List<QuizItem>
 
     @Query("SELECT * FROM patient")
     fun getAllPatients(): List<Patient>
@@ -27,8 +36,8 @@ interface EcapDAO {
 }
 
 @Database(
-    entities = [Patient::class, FillerData::class, AssessmentForm::class, VisitInfo::class],
-    version = 5,
+    entities = [Patient::class, FillerData::class, AssessmentForm::class, VisitInfo::class, QuizItem::class],
+    version = 9,
 )
 abstract class EcapDatabase : RoomDatabase() {
     abstract fun ecapDao(): EcapDAO
