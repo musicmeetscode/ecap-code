@@ -138,6 +138,7 @@ class QuizItem(
         return "QN. ${this.id}"
     }
 
+
     fun getOptionVisibility(optionIndex: Int): Int {
         return when (optionIndex) {
             1 -> if (options1.isNotBlank()) View.VISIBLE else View.GONE
@@ -151,11 +152,42 @@ class QuizItem(
         }
     }
 
+    fun getPassString(): Pair<String, String> {
+        return Pair(
+            if (calculateScores().first > 60) {
+                "Pass"
+            } else {
+                "Fail"
+            }, if (calculateScores().second > 60) {
+                "Pass"
+            } else {
+                "Fail"
+            }
+        )
+    }
+
+    fun calculateScores(): Pair<Int, Int> {
+//        return quizItems.map { item ->
+        // Parse the answer, checked, and postChecked fields into lists of integers
+        val answerList = this.answer.split(",").map { it.trim().toInt() }
+        val checkedList = this.checked.replace("[", "").replace("]", "").split(",").filter { it.isNotEmpty() }.map { it.trim().toInt() }
+        val postCheckedList =
+            this.postChecked.replace("[", "").replace("]", "").split(",").filter { it.isNotEmpty() }.map { it.trim().toInt() }
+
+        val firstScore = (100 * checkedList.count { it in answerList }) / answerList.size
+        val secondScore = (100 * postCheckedList.count { it in answerList }) / answerList.size
+
+        // Return the pair of scores
+        return Pair(firstScore, secondScore)
+//        }
+    }
+
+
     @ColumnInfo
     var timeStamp: Long = System.currentTimeMillis()
 
     val isAnswerChecked: Boolean
-        get() = checked.isEmpty()
+        get() = postChecked.isEmpty()
 
 }
 

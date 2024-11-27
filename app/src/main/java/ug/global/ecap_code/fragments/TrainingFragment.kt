@@ -5,8 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import ug.global.ecap_code.ActivityQuiz
+import ug.global.ecap_code.database.EcapDatabase
 import ug.global.ecap_code.databinding.FragmentTrainingBinding
 
 
@@ -22,5 +28,26 @@ class TrainingFragment : Fragment() {
         binding.quizBUtton.setOnClickListener {
             requireContext().startActivity(Intent(requireContext(), ActivityQuiz::class.java))
         }
+        lifecycleScope.launch(IO) {
+            val quizzes = EcapDatabase.getInstance(requireContext()).ecapDao().getQuiz()
+            val preAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1)
+            val postAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1)
+            quizzes.forEachIndexed { index, it ->
+                val pass = it.getPassString()
+                val score = it.calculateScores()
+                preAdapter.add(
+                    "Question ${index.plus(1)}: ${score.first}% - ${pass.first}"
+                )
+                postAdapter.add(
+                    "Question ${index.plus(1)}: ${score.second}% - ${pass.second}"
+                )
+            }
+            MainScope().launch {
+                binding.listView.adapter = preAdapter
+                binding.listView2.adapter = postAdapter
+            }
+        }
+
+
     }
 }

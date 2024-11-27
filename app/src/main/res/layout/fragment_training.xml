@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -74,18 +74,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="20dp"
         app:counter="1. "
-        app:header="@string/dementia_assessment"
+        app:header="@string/firstt"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:layout_editor_absoluteX="12dp" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
-        app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -96,12 +89,32 @@
 
 
     <ug.global.ecap_code.views.EcapTextHeader
+        android:id="@+id/ecapTextHeader3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         app:counter="2. "
-        app:header="@string/dementia_management_care"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:header="@string/post_tra"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
         tools:layout_editor_absoluteX="12dp" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="@+id/ecapTextHeader"
+        app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
+        app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader">
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/ecapTextHeader"
+        app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
+        app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

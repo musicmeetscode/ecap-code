@@ -36,6 +36,10 @@ class ActivityQuiz : AppCompatActivity() {
             } else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_trained", true)) {
                 finish()
                 startActivity(Intent(this, DataActivity::class.java))
+            } else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_quizzed_post", true)) {
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("not_quizzed_post", false).apply()
+                finish()
+                startActivity(Intent(this, ActivityMain::class.java))
             }
         }
         lifecycleScope.launch(IO) {

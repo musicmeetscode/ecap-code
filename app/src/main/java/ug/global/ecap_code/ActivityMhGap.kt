@@ -1,5 +1,6 @@
 package ug.global.ecap_code
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.graphics.pdf.PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY
@@ -29,6 +30,11 @@ class ActivityMhGap : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.completeModule.setOnClickListener {
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("not_trained", false).apply()
+            finish()
+            startActivity(Intent(this, ActivityMain::class.java))
+        }
         binding.buttonPrevious.setOnClickListener {
             changePage(false)
         }

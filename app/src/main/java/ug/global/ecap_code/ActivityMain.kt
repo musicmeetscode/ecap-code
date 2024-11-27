@@ -36,7 +36,9 @@ class ActivityMain : AppCompatActivity(), AppCallBacks {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
-
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_quizzed_post", true)) {
+            binding.bottomNavigationView.menu.removeItem(R.id.patientsFragment)
+        }
         if (PreferenceManager.getDefaultSharedPreferences(this).getString("token", "none") == "none") {
             loginBottomSheet.show(supportFragmentManager, "login_sheet", this, this@ActivityMain)
             loginBottomSheet.isCancelable = false
@@ -47,6 +49,9 @@ class ActivityMain : AppCompatActivity(), AppCallBacks {
             } else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_trained", true)) {
                 finish()
                 startActivity(Intent(this, ActivityMhGap::class.java))
+            } else if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("not_quizzed_post", true)) {
+                finish()
+                startActivity(Intent(this, ActivityQuiz::class.java))
             }
         }
     }

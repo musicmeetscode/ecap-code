@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -71,7 +72,12 @@ class QuizAdapter(private var quizzes: ArrayList<QuizItem>, var context: Context
                 } else {
                     checked.remove((ids.indexOf(materialCheck) + 1).toString())
                 }
-                quiz.checked = checked.toString()
+
+                if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("not_trained", true)) {
+                    quiz.checked = checked.toString()
+                } else {
+                    quiz.postChecked = checked.toString()
+                }
                 scope.launch(IO) {
                     EcapDatabase.getInstance(context).ecapDao().addQuiz(quiz)
                 }
