@@ -36,27 +36,29 @@ data class VisitInfo(
 
 @Entity
 data class AssessmentForm(
-    @ColumnInfo @Bindable var forgetfulness: Boolean = false, // Switch for "Forgetfulness"
-    @ColumnInfo @Bindable var apathy: Boolean = false, // Switch for "Apathy"
-    @ColumnInfo @Bindable var emotion: Boolean = false, // Switch for "Emotion"
-    @ColumnInfo @Bindable var activities: Boolean = false, // Switch for "Activities"
+    @ColumnInfo @Bindable var forgetfulness: Boolean = false,
+    @ColumnInfo @Bindable var apathy: Boolean = false,
+    @ColumnInfo @Bindable var emotion: Boolean = false,
+    @ColumnInfo @Bindable var activities: Boolean = false,
 
-    @ColumnInfo @Bindable var memoryProblems: String = "yes", // Selected option for "Memory Problems" radio group
-    @ColumnInfo @Bindable var keyRoles: String = "no", // Selected option for "Key Roles" radio group
+    @ColumnInfo @Bindable var memoryProblems: String = "yes",
+    @ColumnInfo @Bindable var keyRoles: String = "no",
 
-    @ColumnInfo @Bindable var progressing: String = "no",// Selected option for "Progressing" radio group
-    @ColumnInfo @Bindable var anyOf: String = "no", // Selected option for "Any Of" radio group
+    @ColumnInfo @Bindable var progressing: String = "no",
+    @ColumnInfo @Bindable var anyOf: String = "no",
 
-    @ColumnInfo @Bindable var depress: String = "no", // Selected option for "Depress" radio group
-    @ColumnInfo @Bindable var otherAny: String = "no", // Selected option for "Other Any" radio group
-    @ColumnInfo @Bindable var anaemia: String = "no", // Selected option for "Anaemia" radio group
-    @ColumnInfo @Bindable var cardio: String = "no",// Selected option for "Cardio" radio group
+    @ColumnInfo @Bindable var depress: String = "no",
+    @ColumnInfo @Bindable var otherAny: String = "no",
+    @ColumnInfo @Bindable var anaemia: String = "no",
+    @ColumnInfo @Bindable var cardio: String = "no",
 
-    @ColumnInfo @Bindable var caretaker: String = "no", // Selected option for "Caretaker" radio group
-    @ColumnInfo @Bindable var careMood: String = "no", // Selected option for "Care Mood" radio group
-    @ColumnInfo @Bindable var careIncome: String = "no",// Selected option for "Care Income" radio group
+    @ColumnInfo @Bindable var caretaker: String = "no",
+    @ColumnInfo @Bindable var careMood: String = "no",
+    @ColumnInfo @Bindable var careIncome: String = "no",
 
-    @ColumnInfo @Bindable var behavior: String = "no", // Selected option for "Behavior" radio group
+    @ColumnInfo @Bindable var behavior: String = "no",
+    @ColumnInfo @Bindable var hasDementia: String = "no",
+    @ColumnInfo @Bindable var management: String = "",
 ) : BaseObservable() {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
@@ -114,6 +116,10 @@ data class Patient(
     @ColumnInfo
     var timeStamp: Long = System.currentTimeMillis()
 
+    fun isValid(): Boolean {
+        return firstName.isNotEmpty() && lastName.isNotEmpty() && sexGender.isNotEmpty() && (age.isNotEmpty() or dateOfBirth.isNotEmpty())
+    }
+
 }
 
 @Entity
@@ -167,8 +173,8 @@ class QuizItem(
     }
 
     fun calculateScores(): Pair<Int, Int> {
-//        return quizItems.map { item ->
-        // Parse the answer, checked, and postChecked fields into lists of integers
+
+
         val answerList = this.answer.split(",").map { it.trim().toInt() }
         val checkedList = this.checked.replace("[", "").replace("]", "").split(",").filter { it.isNotEmpty() }.map { it.trim().toInt() }
         val postCheckedList =
@@ -177,9 +183,9 @@ class QuizItem(
         val firstScore = (100 * checkedList.count { it in answerList }) / answerList.size
         val secondScore = (100 * postCheckedList.count { it in answerList }) / answerList.size
 
-        // Return the pair of scores
+
         return Pair(firstScore, secondScore)
-//        }
+
     }
 
 

@@ -34,7 +34,7 @@ class VitalsFragment(private var callbacks: PatientDataCallBacks) : Fragment() {
             callbacks.getFillerData(it.first, it.second)
         }
         binding.button.setOnClickListener {
-            callbacks.vitalsComplete()
+            callbacks.vitalsComplete(visit)
         }
     }
 }

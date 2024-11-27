@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import ug.global.ecap_code.database.AssessmentForm
 import ug.global.ecap_code.databinding.FormAssessmentFormBinding
 import ug.global.ecap_code.util.PatientDataCallBacks
 
 class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment() {
     val binding by lazy { FormAssessmentFormBinding.inflate(layoutInflater) }
+    private val asses = AssessmentForm()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +38,7 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             }
         }
         binding.button.setOnClickListener {
-            callbacks.assessmentComplete()
+            callbacks.assessmentComplete(asses)
         }
     }
 }

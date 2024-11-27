@@ -35,7 +35,7 @@ class EcapRadioGroup @JvmOverloads constructor(
             val typedArray = context.obtainStyledAttributes(it, R.styleable.EcapRadioGroup, 0, 0)
             val text = typedArray.getString(R.styleable.EcapRadioGroup_text)
             setText(text ?: "")
-            val defaultChecked = typedArray.getInt(R.styleable.EcapRadioGroup_defaultChecked, 1)
+            val defaultChecked = typedArray.getInt(R.styleable.EcapRadioGroup_defaultChecked, 2)
             when (defaultChecked) {
                 1 -> radioYes.isChecked = true // Default to "yes"
                 2 -> radioNo.isChecked = true  // Default to "no"

@@ -20,7 +20,6 @@ class NewPatientFragment(private var callbacks: PatientDataCallBacks) : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.patient = patient
-
 //        Fetch filler data
         arrayOf(
             "suffix" to binding.suffix,
@@ -36,7 +35,7 @@ class NewPatientFragment(private var callbacks: PatientDataCallBacks) : Fragment
             callbacks.getFillerData(it.first, it.second)
         }
         binding.button.setOnClickListener {
-            callbacks.infoComplete()
+            callbacks.infoComplete(patient)
         }
     }
 }

@@ -32,12 +32,19 @@ interface EcapDAO {
     fun getAllPatients(): List<Patient>
 
     @Upsert
-    fun insertPatient(patient: Patient)
+    fun insertPatient(patient: Patient): Long
+
+    @Upsert
+    fun insertAssessment(assessmentForm: AssessmentForm): Long
+
+    @Upsert
+    fun insertVisis(visitInfo: VisitInfo): Long
+
 }
 
 @Database(
     entities = [Patient::class, FillerData::class, AssessmentForm::class, VisitInfo::class, QuizItem::class],
-    version = 9,
+    version = 10,
 )
 abstract class EcapDatabase : RoomDatabase() {
     abstract fun ecapDao(): EcapDAO

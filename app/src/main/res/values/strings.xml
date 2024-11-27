@@ -99,4 +99,7 @@
     <string name="complete_module">Complete Module ...</string>
     <string name="firstt">Pre - Training Assessment</string>
     <string name="post_tra">Post Training Assessment</string>
+    <string name="diagnosis_management"><![CDATA[Diagnosis & Management]]></string>
+    <string name="does">Does Patient Have Dementia?</string>
+    <string name="recommended_management">Recommended management</string>
 </resources>

@@ -1,5 +1,6 @@
 package ug.global.ecap_code
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface.BUTTON_NEGATIVE
 import android.content.DialogInterface.BUTTON_POSITIVE
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.widget.AutoCompleteTextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
@@ -17,16 +19,24 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import ug.global.ecap_code.database.AssessmentForm
 import ug.global.ecap_code.database.EcapDatabase
 import ug.global.ecap_code.database.FillerData
-import ug.global.ecap_code.databinding.FragmentDataBinding
+import ug.global.ecap_code.database.Patient
+import ug.global.ecap_code.database.VisitInfo
+import ug.global.ecap_code.databinding.ActivityDataBinding
 import ug.global.ecap_code.fragments.data.AssessmentFragment
 import ug.global.ecap_code.fragments.data.NewPatientFragment
 import ug.global.ecap_code.fragments.data.VitalsFragment
 import ug.global.ecap_code.util.PatientDataCallBacks
 
 class DataActivity : AppCompatActivity(), PatientDataCallBacks {
-    val binding by lazy { FragmentDataBinding.inflate(layoutInflater) }
+
+    val binding by lazy { ActivityDataBinding.inflate(layoutInflater) }
+    private var patientInfo = Patient()
+    private var visitInfo = VisitInfo()
+    private var assessmentInfo = AssessmentForm()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -66,16 +76,35 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
         })
     }
 
-    override fun infoComplete() {
-        binding.viewPager.currentItem = 1
+
+    override fun infoComplete(patient: Patient) {
+        if (patient.isValid()) {
+            binding.viewPager.currentItem = 1
+            patientInfo = patient
+        } else {
+            setErrors(arrayOf("PLease fill all fields and try again"))
+        }
     }
 
-    override fun vitalsComplete() {
+    override fun vitalsComplete(visit: VisitInfo) {
+        visitInfo = visit
         binding.viewPager.currentItem = 2
     }
 
-    override fun assessmentComplete() {
-        TODO("Not yet implemented")
+    override fun assessmentComplete(asses: AssessmentForm) {
+        assessmentInfo = asses
+        lifecycleScope.launch(IO) {
+            EcapDatabase.getInstance(this@DataActivity).ecapDao().apply {
+                val newId = this.insertPatient(patientInfo)
+                visitInfo.patient = newId.toInt()
+                assessmentInfo.patient = newId.toInt()
+                this.insertVisis(visitInfo)
+                this.insertAssessment(assessmentInfo)
+                MainScope().launch {
+                    finish()
+                }
+            }
+        }
     }
 
     override fun getFillerData(type: String, view: AutoCompleteTextView) {
@@ -90,6 +119,21 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
                 adapter.notifyDataSetChanged()
             }
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun clearErrors() {
+        binding.errorText.text = ""
+        binding.errorText.isVisible = false
+    }
+
+    override fun setErrors(stringArray: Array<String>) {
+        val error = ""
+        stringArray.forEach {
+            error.plus("-$it")
+        }
+        binding.errorText.text = error
+        binding.errorText.isVisible = true
     }
 
 }

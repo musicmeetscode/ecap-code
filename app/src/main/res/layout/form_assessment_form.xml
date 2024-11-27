@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -22,11 +23,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
-                android:text="@string/next"
+                android:text="@string/finish_assessement"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup12" />
+                app:layout_constraintEnd_toEndOf="@+id/memoryGroup"
+                app:layout_constraintStart_toStartOf="@+id/memoryGroup"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout31" />
 
             <ug.global.ecap_code.views.EcapTextHeader
                 android:id="@+id/textView7"
@@ -102,7 +103,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:defaultChecked="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
                 app:text="@string/memory_problems" />
@@ -267,35 +267,79 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="activityGroup,progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+                app:constraint_referenced_ids="activityGroup,progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+                app:constraint_referenced_ids="progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="depressionGroup,ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+                app:constraint_referenced_ids="depressionGroup,ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+                app:constraint_referenced_ids="ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/group5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="ecapRadioGroup7,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12" />
+                app:constraint_referenced_ids="ecapRadioGroup7,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                tools:visibility="visible" />
+
+            <ug.global.ecap_code.views.EcapTextHeader
+                android:id="@+id/ecapTextHeader4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:counter="7."
+                app:header="@string/diagnosis_management"
+                app:layout_constraintEnd_toEndOf="@+id/ecapRadioGroup12"
+                app:layout_constraintStart_toStartOf="@+id/ecapRadioGroup12"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup12" />
+
+            <ug.global.ecap_code.views.EcapRadioGroup
+                android:id="@+id/ecapRadioGroup132"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                app:defaultChecked="no"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader4"
+                app:text="@string/does" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout31"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/ecapRadioGroup132"
+                app:layout_constraintStart_toStartOf="@+id/ecapRadioGroup132"
+                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup132">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/management"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/recommended_management"
+                    android:inputType="textCapSentences|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
