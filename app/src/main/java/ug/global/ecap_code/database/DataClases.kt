@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.preference.PreferenceManager
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -40,7 +41,7 @@ data class VisitInfo(
     var patient: Int = 0
 
 
-    fun toJson(context: Context, staff: Int): JSONObject {
+    fun toJson(context: Context): JSONObject {
         val json = JSONObject(Gson().toJson(this))
         EcapDatabase.getInstance(context).ecapDao().apply {
             json.put("triage", this.getFillerDataId(triage))
@@ -53,7 +54,16 @@ data class VisitInfo(
             json.put("mode_of_arrival", this.getFillerDataId(mode_of_arrival))
             json.put("level_of_care", this.getFillerDataId(level_of_care))
             json.put("patient_condition", this.getFillerDataId(patient_condition))
-            json.put("staff", staff)
+            json.put("staff", PreferenceManager.getDefaultSharedPreferences(context).getInt("staff", 0))
+            val keys = json.keys() // Iterator of keys
+            while (keys.hasNext()) {
+                val key = keys.next()
+                val value = json.opt(key)
+
+                if ((value is Int && value == 0) || (value is String && value == "0")) {
+                    json.put(key, JSONObject.NULL) // Set zero values to null
+                }
+            }
             return json
         }
     }
@@ -80,6 +90,46 @@ data class AssessmentForm(
     @ColumnInfo @Bindable var hasDementia: String = "no",
     @ColumnInfo @Bindable var management: String = "",
 ) : BaseObservable() {
+    fun getAssessmentSummary(): String {
+        val statements = listOf(
+            "The person has %s forgetfulness and orientation problems." to forgetfulness,
+            "The person %s mood or behavioral problems such as apathy or irritability." to apathy,
+            "The person %s difficulty controlling emotions, often becoming upset, irritable, or tearful." to emotion,
+            "The person %s difficulties carrying out usual work, domestic, or social activities." to activities,
+            "There %s memory and/or orientation problems." to memoryProblems,
+            "The person %s difficulties performing key roles or activities." to keyRoles,
+            "The symptoms have %s present and slowly progressing for at least 6 months." to progressing,
+            "The person %s moderate to severe depression." to depress,
+            "The person %s poor dietary intake, malnutrition, or anaemia." to anaemia,
+            "The person %s cardiovascular risk factors." to cardio,
+            "The carer %s difficulty coping or experiencing strain." to caretaker,
+            "The carer %s a depressed mood." to careMood,
+            "The carer %s facing loss of income or additional expenses due to care needs." to careIncome
+        )
+
+        return buildString {
+            statements.forEach { (template, condition) ->
+                appendLine(template.format(if (condition as Boolean) "has" else "does not have"))
+            }
+        }
+    }
+
+    fun buildAbstract(): String {
+        return "Decline or problems with memory (severe forgetfulness) and orientation ${this.forgetfulness}\n" +
+                "Mood or behavioural problems such as apathy (appearing uninterested) or irritability  ${this.apathy}\n" +
+                "Loss of emotional control-easily upset, irritable, or tearful  ${this.emotion}\n" +
+                "Difficulties in carrying out usual work, domestic, or social activities ${this.activities}\n" +
+                "Are there problems with memory and/or orientation? ${this.memoryProblems}\n" +
+                "Does the person have difficulties in performing key roles/activities? ${this.keyRoles}\n" +
+                "Have the symptoms been present and slowly progressing for at least 6 months? ${this.progressing}\n" +
+                "Does the person have moderate to severe DEPRESSION? ${this.depress}\n" +
+                "Does the person have poor dietary intake, malnutrition, or anaemia? ${this.anaemia}\n" +
+                "Does the person have cardiovascular risk factors? ${this.cardio}\n" +
+                "Is the carer having difficulty coping or experiencing strain? ${this.caretaker}\n" +
+                "Is the carer experiencing depressed mood?  ${this.careMood}\n" +
+                "Is the carer facing loss of income and/or additional expenses because of the needs for care? ${this.careIncome}\n"
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     var id: Int = 0
@@ -89,7 +139,7 @@ data class AssessmentForm(
     var online_id: Int = 0
 
     @ColumnInfo(defaultValue = "0")
-    var patient: Int = 0
+    var visit: Int = 0
 
 }
 
@@ -138,7 +188,7 @@ data class Patient(
     @ColumnInfo(defaultValue = "0")
     var online_id: Int = 0
 
-    fun toJson(context: Context, staff: Int): JSONObject {
+    fun toJson(context: Context): JSONObject {
         val json = JSONObject(Gson().toJson(this))
         EcapDatabase.getInstance(context).ecapDao().apply {
             json.put("gender", this.getFillerDataId(gender))
@@ -149,10 +199,23 @@ data class Patient(
             json.put("tribe", this.getFillerDataId(tribe))
             json.put("language", this.getFillerDataId(language))
             json.put("district", this.getFillerDataId(district))
+            json.put("nationality", this.getFillerDataId(nationality))
             json.put("village", this.getFillerDataId(village))
             json.put("religion", this.getFillerDataId(religion))
-            json.put("staff", staff)
+            json.put("reg_no", "#SJHAPA${id}")
+            json.put("staff", PreferenceManager.getDefaultSharedPreferences(context).getInt("staff", 0))
+            json.remove("dob")
+            val keys = json.keys() // Iterator of keys
+            while (keys.hasNext()) {
+                val key = keys.next()
+                val value = json.opt(key)
+
+                if ((value is Int && value == 0) || (value is String && value == "0")) {
+                    json.put(key, JSONObject.NULL) // Set zero values to null
+                }
+            }
         }
+
         return json
     }
 

@@ -4,16 +4,22 @@ import android.content.DialogInterface.BUTTON_NEGATIVE
 import android.content.DialogInterface.BUTTON_POSITIVE
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.preference.PreferenceManager
+import com.android.volley.Request.Method.POST
+import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import ug.global.ecap_code.database.EcapDatabase
@@ -22,6 +28,8 @@ import ug.global.ecap_code.database.QuizItem
 import ug.global.ecap_code.databinding.ActivityMainBinding
 import ug.global.ecap_code.sheets.LoginBottomSheet
 import ug.global.ecap_code.util.AppCallBacks
+import ug.global.ecap_code.util.MySingleton
+import ug.global.ecap_code.util.URLS
 
 class ActivityMain : AppCompatActivity(), AppCallBacks {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -122,6 +130,73 @@ class ActivityMain : AppCompatActivity(), AppCallBacks {
                 }
                 logout.setButton(BUTTON_NEGATIVE, getString(R.string.cancel)) { _, _ -> }
                 logout.show()
+                return true
+            }
+
+            R.id.action_upload -> {
+                val uploadAlert = MaterialAlertDialogBuilder(this).create()
+                uploadAlert.setTitle("Data Upload")
+                uploadAlert.setCancelable(false)
+                uploadAlert.setButton(BUTTON_NEGATIVE, getString(R.string.cancel)) { _, _ -> }
+                lifecycleScope.launch(IO) {
+                    var uploaded = 0
+                    val db = EcapDatabase.getInstance(this@ActivityMain).ecapDao()
+                    val patients = db.getAllPatients()
+                    MainScope().launch {
+                        uploadAlert.setMessage(getString(R.string.please_wait, patients.size))
+                    }
+                    patients.forEach { patient ->
+                        val patientJson = patient.toJson(this@ActivityMain)
+                        val visit = db.getPatientVisit(patient.id)
+                        val assessment = db.getPatientAssessment(visit.id)
+                        val visitJson = visit.toJson(this@ActivityMain)
+
+                        val clerkJson = JSONObject().put("chief_complain", visit.chief_complaint)
+                            .put("history_of_present_illiness", visit.history_of_present_illiness)
+                            .put("physical_examination", visit.physical_examination).put("review_of_systems", visit.review_of_systems)
+                            .put("recommendations", assessment.management).put(
+                                "preliminary_diagnosis", if (assessment.hasDementia == "yes") {
+                                    "Dementia"
+                                } else {
+                                    "None/Delirium"
+                                }
+                            ).put("abstract", assessment.buildAbstract())
+                        val patientJsonObject = JSONObject().put("patient", patientJson).put("visit", visitJson).put("clerk", clerkJson)
+                        Log.e("TAG", "onOptionsItemSelected: " + patientJsonObject)
+                        MySingleton.getInstance(this@ActivityMain)
+                            ?.addToRequestQueue(object : JsonObjectRequest(POST, URLS.PATIENT_POST, patientJsonObject, { respo ->
+                                patient.online_id = respo.getJSONObject("patient").getInt("id")
+                                uploaded += 1
+                                if (uploaded == patients.size) {
+                                    MainScope().launch {
+                                        uploadAlert.dismiss()
+                                        Snackbar.make(binding.root, "Upload success", LENGTH_LONG).show()
+                                    }
+                                }
+                                lifecycleScope.launch(IO) {
+                                    db.insertPatient(patient)
+                                }
+                            }, { error ->
+                                Log.e("TAG", "onOptionsItemSelected:" + error)
+                                uploaded += 1
+                                if (uploaded == patients.size) {
+                                    MainScope().launch {
+                                        uploadAlert.dismiss()
+                                        Snackbar.make(binding.root, "Upload success with some errors", LENGTH_LONG).show()
+                                    }
+                                }
+                            }) {
+                                override fun getHeaders(): Map<String, String> {
+                                    val headers = HashMap<String, String>()
+                                    headers["Accept"] = "application/json;"
+                                    headers["Authorization"] = "Token " + PreferenceManager.getDefaultSharedPreferences(this@ActivityMain)
+                                        .getString("token", "token")
+                                    return headers
+                                }
+                            })
+                    }
+                }
+                uploadAlert.show()
                 return true
             }
 

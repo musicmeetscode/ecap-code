@@ -103,4 +103,5 @@
     <string name="does">Does Patient Have Dementia?</string>
     <string name="recommended_management">Recommended management</string>
     <string name="upload">UPLOAD</string>
+    <string name="please_wait">Please wait while we upload %1$d records</string>
 </resources>

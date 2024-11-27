@@ -97,8 +97,8 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
             EcapDatabase.getInstance(this@DataActivity).ecapDao().apply {
                 val newId = this.insertPatient(patientInfo)
                 visitInfo.patient = newId.toInt()
-                assessmentInfo.patient = newId.toInt()
-                this.insertVisis(visitInfo)
+                val id = this.insertVisit(visitInfo)
+                assessmentInfo.visit = id.toInt()
                 this.insertAssessment(assessmentInfo)
                 MainScope().launch {
                     finish()

@@ -14,7 +14,7 @@ interface EcapDAO {
     fun getFillerData(type: String): List<FillerData>
 
     @Query("SELECT dataid FROM FillerData WHERE name=:type")
-    fun getFillerDataId(type: String): Int
+    fun getFillerDataId(type: String): Int?
 
     @Query("DELETE FROM FillerData")
     fun deleteFillers()
@@ -40,14 +40,22 @@ interface EcapDAO {
     @Upsert
     fun insertAssessment(assessmentForm: AssessmentForm): Long
 
+
+    @Query("SELECT * FROM AssessmentForm WHERE visit=:patient LIMIT 1")
+    fun getPatientAssessment(patient: Int): AssessmentForm
+
+
+    @Query("SELECT * FROM VisitInfo WHERE patient=:patient LIMIT 1")
+    fun getPatientVisit(patient: Int): VisitInfo
+
     @Upsert
-    fun insertVisis(visitInfo: VisitInfo): Long
+    fun insertVisit(visitInfo: VisitInfo): Long
 
 }
 
 @Database(
     entities = [Patient::class, FillerData::class, AssessmentForm::class, VisitInfo::class, QuizItem::class],
-    version = 12,
+    version = 13,
 )
 abstract class EcapDatabase : RoomDatabase() {
     abstract fun ecapDao(): EcapDAO
