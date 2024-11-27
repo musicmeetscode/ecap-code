@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 10,
-    "identityHash": "b583acba05993796dacf69df0d871ed9",
+    "version": 11,
+    "identityHash": "492c34f6fee521eade73e4d4c8a1b6c1",
     "entities": [
       {
         "tableName": "Patient",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`f_name` TEXT NOT NULL, `l_name` TEXT NOT NULL, `m_name` TEXT NOT NULL, `gender` TEXT NOT NULL, `nin` TEXT NOT NULL, `phone` TEXT NOT NULL, `suffix` TEXT NOT NULL, `prefix` TEXT NOT NULL, `blood_group` TEXT NOT NULL, `marital_status` TEXT NOT NULL, `occupation` TEXT NOT NULL, `dob` TEXT NOT NULL, `age` TEXT NOT NULL, `tribe` TEXT NOT NULL, `language` TEXT NOT NULL, `nationality` TEXT NOT NULL, `district` TEXT NOT NULL, `village` TEXT NOT NULL, `religion` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timeStamp` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`f_name` TEXT NOT NULL, `l_name` TEXT NOT NULL, `mo_name` TEXT NOT NULL, `gender` TEXT NOT NULL, `nin` TEXT NOT NULL, `phone` TEXT NOT NULL, `suffix` TEXT NOT NULL, `prefix` TEXT NOT NULL, `blood_group` TEXT NOT NULL, `marital_status` TEXT NOT NULL, `occupation` TEXT NOT NULL, `dob` TEXT NOT NULL, `age` TEXT NOT NULL, `tribe` TEXT NOT NULL, `language` TEXT NOT NULL, `nationality` TEXT NOT NULL, `district` TEXT NOT NULL, `village` TEXT NOT NULL, `religion` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `online_id` INTEGER NOT NULL DEFAULT 0, `timeStamp` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "f_name",
@@ -21,8 +21,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "m_name",
-            "columnName": "m_name",
+            "fieldPath": "mo_name",
+            "columnName": "mo_name",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -129,6 +129,13 @@
             "notNull": true
           },
           {
+            "fieldPath": "online_id",
+            "columnName": "online_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
             "fieldPath": "timeStamp",
             "columnName": "timeStamp",
             "affinity": "INTEGER",
@@ -190,7 +197,7 @@
       },
       {
         "tableName": "AssessmentForm",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`forgetfulness` INTEGER NOT NULL, `apathy` INTEGER NOT NULL, `emotion` INTEGER NOT NULL, `activities` INTEGER NOT NULL, `memoryProblems` TEXT NOT NULL, `keyRoles` TEXT NOT NULL, `progressing` TEXT NOT NULL, `anyOf` TEXT NOT NULL, `depress` TEXT NOT NULL, `otherAny` TEXT NOT NULL, `anaemia` TEXT NOT NULL, `cardio` TEXT NOT NULL, `caretaker` TEXT NOT NULL, `careMood` TEXT NOT NULL, `careIncome` TEXT NOT NULL, `behavior` TEXT NOT NULL, `hasDementia` TEXT NOT NULL, `management` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `patient` INTEGER NOT NULL DEFAULT 0)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`forgetfulness` INTEGER NOT NULL, `apathy` INTEGER NOT NULL, `emotion` INTEGER NOT NULL, `activities` INTEGER NOT NULL, `memoryProblems` TEXT NOT NULL, `keyRoles` TEXT NOT NULL, `progressing` TEXT NOT NULL, `anyOf` TEXT NOT NULL, `depress` TEXT NOT NULL, `otherAny` TEXT NOT NULL, `anaemia` TEXT NOT NULL, `cardio` TEXT NOT NULL, `caretaker` TEXT NOT NULL, `careMood` TEXT NOT NULL, `careIncome` TEXT NOT NULL, `behavior` TEXT NOT NULL, `hasDementia` TEXT NOT NULL, `management` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `online_id` INTEGER NOT NULL DEFAULT 0, `patient` INTEGER NOT NULL DEFAULT 0)",
         "fields": [
           {
             "fieldPath": "forgetfulness",
@@ -307,6 +314,13 @@
             "notNull": true
           },
           {
+            "fieldPath": "online_id",
+            "columnName": "online_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
             "fieldPath": "patient",
             "columnName": "patient",
             "affinity": "INTEGER",
@@ -325,103 +339,110 @@
       },
       {
         "tableName": "VisitInfo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`visit_reason` TEXT, `chief_complaint` TEXT, `history_of_present_illiness` TEXT, `review_of_systems` TEXT, `physical_examination` TEXT, `triage` TEXT, `attendance` TEXT, `special_program` TEXT, `encouter_class` TEXT, `admission_type` TEXT, `encouter_type` TEXT, `visit_status` TEXT, `mode_of_arrival` TEXT, `level_of_care` TEXT, `patient_condition` TEXT, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `patient` INTEGER NOT NULL DEFAULT 0)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`visit_reason` TEXT NOT NULL, `chief_complaint` TEXT NOT NULL, `history_of_present_illiness` TEXT NOT NULL, `review_of_systems` TEXT NOT NULL, `physical_examination` TEXT NOT NULL, `triage` TEXT NOT NULL, `attendance` TEXT NOT NULL, `special_program` TEXT NOT NULL, `encouter_class` TEXT NOT NULL, `admission_type` TEXT NOT NULL, `encouter_type` TEXT NOT NULL, `visit_status` TEXT NOT NULL, `mode_of_arrival` TEXT NOT NULL, `level_of_care` TEXT NOT NULL, `patient_condition` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `online_id` INTEGER NOT NULL DEFAULT 0, `patient` INTEGER NOT NULL DEFAULT 0)",
         "fields": [
           {
             "fieldPath": "visit_reason",
             "columnName": "visit_reason",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "chief_complaint",
             "columnName": "chief_complaint",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "history_of_present_illiness",
             "columnName": "history_of_present_illiness",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "review_of_systems",
             "columnName": "review_of_systems",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "physical_examination",
             "columnName": "physical_examination",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "triage",
             "columnName": "triage",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "attendance",
             "columnName": "attendance",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "special_program",
             "columnName": "special_program",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "encouter_class",
             "columnName": "encouter_class",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "admission_type",
             "columnName": "admission_type",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "encouter_type",
             "columnName": "encouter_type",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "visit_status",
             "columnName": "visit_status",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "mode_of_arrival",
             "columnName": "mode_of_arrival",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "level_of_care",
             "columnName": "level_of_care",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "patient_condition",
             "columnName": "patient_condition",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "online_id",
+            "columnName": "online_id",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
           },
           {
             "fieldPath": "patient",
@@ -538,7 +559,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b583acba05993796dacf69df0d871ed9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '492c34f6fee521eade73e4d4c8a1b6c1')"
     ]
   }
 }

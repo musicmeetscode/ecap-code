@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/specialProgram"
-                    android:text="@={visitInfo.specialProgram}" />
+                    android:text="@={visitInfo.special_program}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -126,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/encounter_cl"
-                    android:text="@={visitInfo.encounterClass}" />
+                    android:text="@={visitInfo.encouter_class}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -145,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/admission_type"
-                    android:text="@={visitInfo.admissionType}" />
+                    android:text="@={visitInfo.admission_type}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -164,7 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/encoouter_type"
-                    android:text="@={visitInfo.encounterType}" />
+                    android:text="@={visitInfo.encouter_type}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/visit_st"
-                    android:text="@={visitInfo.visitStatus}" />
+                    android:text="@={visitInfo.visit_status}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -202,7 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/mode_of_arr"
-                    android:text="@={visitInfo.modeOfArrival}" />
+                    android:text="@={visitInfo.mode_of_arrival}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -221,7 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/level_care"
-                    android:text="@={visitInfo.levelOfCare}" />
+                    android:text="@={visitInfo.level_of_care}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -240,7 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/condi"
-                    android:text="@={visitInfo.patientCondition}" />
+                    android:text="@={visitInfo.patient_condition}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/visit_reason"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:text="@={visitInfo.visitReason}" />
+                    android:text="@={visitInfo.visit_reason}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/chief_comp"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:text="@={visitInfo.chiefComplaint}" />
+                    android:text="@={visitInfo.chief_complaint}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -292,7 +292,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/illness_history"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:text="@={visitInfo.illnessHistory}" />
+                    android:text="@={visitInfo.history_of_present_illiness}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -310,7 +310,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/review_of_systems"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:text="@={visitInfo.reviewOfSystems}" />
+                    android:text="@={visitInfo.review_of_systems}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -327,7 +327,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/physical_exa"
                     android:inputType="textCapSentences|textMultiLine"
-                    android:text="@={visitInfo.physicalExam}" />
+                    android:text="@={visitInfo.physical_examination}" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

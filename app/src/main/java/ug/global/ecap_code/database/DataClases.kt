@@ -1,29 +1,32 @@
 package ug.global.ecap_code.database
 
+import android.content.Context
 import android.view.View
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.Gson
+import org.json.JSONObject
 
 @Entity
 data class VisitInfo(
-    @ColumnInfo @Bindable var visitReason: String? = "",
-    @ColumnInfo @Bindable var chiefComplaint: String? = "",
-    @ColumnInfo @Bindable var illnessHistory: String? = "",
-    @ColumnInfo @Bindable var reviewOfSystems: String? = "",
-    @ColumnInfo @Bindable var physicalExam: String? = "",
-    @ColumnInfo @Bindable var triage: String? = "",
-    @ColumnInfo @Bindable var attendance: String? = "",
-    @ColumnInfo @Bindable var specialProgram: String? = "",
-    @ColumnInfo @Bindable var encounterClass: String? = "",
-    @ColumnInfo @Bindable var admissionType: String? = "",
-    @ColumnInfo @Bindable var encounterType: String? = "",
-    @ColumnInfo @Bindable var visitStatus: String? = "",
-    @ColumnInfo @Bindable var modeOfArrival: String? = "",
-    @ColumnInfo @Bindable var levelOfCare: String? = "",
-    @ColumnInfo @Bindable var patientCondition: String? = ""
+    @ColumnInfo @Bindable var visit_reason: String = "",
+    @ColumnInfo @Bindable var chief_complaint: String = "",
+    @ColumnInfo @Bindable var history_of_present_illiness: String = "",
+    @ColumnInfo @Bindable var review_of_systems: String = "",
+    @ColumnInfo @Bindable var physical_examination: String = "",
+    @ColumnInfo @Bindable var triage: String = "",
+    @ColumnInfo @Bindable var attendance: String = "",
+    @ColumnInfo @Bindable var special_program: String = "",
+    @ColumnInfo @Bindable var encouter_class: String = "",
+    @ColumnInfo @Bindable var admission_type: String = "",
+    @ColumnInfo @Bindable var encouter_type: String = "",
+    @ColumnInfo @Bindable var visit_status: String = "",
+    @ColumnInfo @Bindable var mode_of_arrival: String = "",
+    @ColumnInfo @Bindable var level_of_care: String = "",
+    @ColumnInfo @Bindable var patient_condition: String = ""
 ) : BaseObservable() {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
@@ -31,7 +34,29 @@ data class VisitInfo(
     var id: Int = 0
 
     @ColumnInfo(defaultValue = "0")
+    var online_id: Int = 0
+
+    @ColumnInfo(defaultValue = "0")
     var patient: Int = 0
+
+
+    fun toJson(context: Context, staff: Int): JSONObject {
+        val json = JSONObject(Gson().toJson(this))
+        EcapDatabase.getInstance(context).ecapDao().apply {
+            json.put("triage", this.getFillerDataId(triage))
+            json.put("attendance", this.getFillerDataId(attendance))
+            json.put("special_program", this.getFillerDataId(special_program))
+            json.put("encounter_class", this.getFillerDataId(encouter_class))
+            json.put("admission_type", this.getFillerDataId(admission_type))
+            json.put("encounter_type", this.getFillerDataId(encouter_type))
+            json.put("visit_status", this.getFillerDataId(visit_status))
+            json.put("mode_of_arrival", this.getFillerDataId(mode_of_arrival))
+            json.put("level_of_care", this.getFillerDataId(level_of_care))
+            json.put("patient_condition", this.getFillerDataId(patient_condition))
+            json.put("staff", staff)
+            return json
+        }
+    }
 }
 
 @Entity
@@ -40,22 +65,17 @@ data class AssessmentForm(
     @ColumnInfo @Bindable var apathy: Boolean = false,
     @ColumnInfo @Bindable var emotion: Boolean = false,
     @ColumnInfo @Bindable var activities: Boolean = false,
-
     @ColumnInfo @Bindable var memoryProblems: String = "yes",
     @ColumnInfo @Bindable var keyRoles: String = "no",
-
     @ColumnInfo @Bindable var progressing: String = "no",
     @ColumnInfo @Bindable var anyOf: String = "no",
-
     @ColumnInfo @Bindable var depress: String = "no",
     @ColumnInfo @Bindable var otherAny: String = "no",
     @ColumnInfo @Bindable var anaemia: String = "no",
     @ColumnInfo @Bindable var cardio: String = "no",
-
     @ColumnInfo @Bindable var caretaker: String = "no",
     @ColumnInfo @Bindable var careMood: String = "no",
     @ColumnInfo @Bindable var careIncome: String = "no",
-
     @ColumnInfo @Bindable var behavior: String = "no",
     @ColumnInfo @Bindable var hasDementia: String = "no",
     @ColumnInfo @Bindable var management: String = "",
@@ -64,12 +84,13 @@ data class AssessmentForm(
     @ColumnInfo
     var id: Int = 0
 
+
+    @ColumnInfo(defaultValue = "0")
+    var online_id: Int = 0
+
     @ColumnInfo(defaultValue = "0")
     var patient: Int = 0
 
-    fun hasMemoryIssues(): Int {
-        return if (this.memoryProblems == "Yes") View.VISIBLE else View.GONE
-    }
 }
 
 @Entity
@@ -89,35 +110,57 @@ data class FillerData(
 
 @Entity
 data class Patient(
-    @ColumnInfo @Bindable var firstName: String = "",
-    @ColumnInfo @Bindable var lastName: String = "",
-    @ColumnInfo @Bindable var otherName: String = "",
-    @ColumnInfo @Bindable var sexGender: String = "",
-    @ColumnInfo @Bindable var ninPassport: String = "",
-    @ColumnInfo @Bindable var phoneNumber: String = "",
+    @ColumnInfo @Bindable var f_name: String = "",
+    @ColumnInfo @Bindable var l_name: String = "",
+    @ColumnInfo @Bindable var mo_name: String = "",
+    @ColumnInfo @Bindable var gender: String = "",
+    @ColumnInfo @Bindable var nin: String = "",
+    @ColumnInfo @Bindable var phone: String = "",
     @ColumnInfo @Bindable var suffix: String = "",
     @ColumnInfo @Bindable var prefix: String = "",
-    @ColumnInfo @Bindable var bloodGroup: String = "",
-    @ColumnInfo @Bindable var maritalStatus: String = "",
+    @ColumnInfo @Bindable var blood_group: String = "",
+    @ColumnInfo @Bindable var marital_status: String = "",
     @ColumnInfo @Bindable var occupation: String = "",
-    @ColumnInfo @Bindable var dateOfBirth: String = "",
+    @ColumnInfo @Bindable var dob: String = "",
     @ColumnInfo @Bindable var age: String = "",
     @ColumnInfo @Bindable var tribe: String = "",
-    @ColumnInfo @Bindable var mainLanguageSpoken: String = "",
+    @ColumnInfo @Bindable var language: String = "",
     @ColumnInfo @Bindable var nationality: String = "",
     @ColumnInfo @Bindable var district: String = "",
     @ColumnInfo @Bindable var village: String = "",
-    @ColumnInfo @Bindable var religion: String = ""
+    @ColumnInfo @Bindable var religion: String = "",
 ) : BaseObservable() {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo
     var id: Int = 0
 
+
+    @ColumnInfo(defaultValue = "0")
+    var online_id: Int = 0
+
+    fun toJson(context: Context, staff: Int): JSONObject {
+        val json = JSONObject(Gson().toJson(this))
+        EcapDatabase.getInstance(context).ecapDao().apply {
+            json.put("gender", this.getFillerDataId(gender))
+            json.put("suffix", this.getFillerDataId(suffix))
+            json.put("prefix", this.getFillerDataId(prefix))
+            json.put("blood_group", this.getFillerDataId(blood_group))
+            json.put("marital_status", this.getFillerDataId(marital_status))
+            json.put("tribe", this.getFillerDataId(tribe))
+            json.put("language", this.getFillerDataId(language))
+            json.put("district", this.getFillerDataId(district))
+            json.put("village", this.getFillerDataId(village))
+            json.put("religion", this.getFillerDataId(religion))
+            json.put("staff", staff)
+        }
+        return json
+    }
+
     @ColumnInfo
     var timeStamp: Long = System.currentTimeMillis()
 
     fun isValid(): Boolean {
-        return firstName.isNotEmpty() && lastName.isNotEmpty() && sexGender.isNotEmpty() && (age.isNotEmpty() or dateOfBirth.isNotEmpty())
+        return f_name.isNotEmpty() && l_name.isNotEmpty() && gender.isNotEmpty() && (age.isNotEmpty() or dob.isNotEmpty())
     }
 
 }
@@ -143,7 +186,6 @@ class QuizItem(
     fun getQId(): String {
         return "QN. ${this.id}"
     }
-
 
     fun getOptionVisibility(optionIndex: Int): Int {
         return when (optionIndex) {

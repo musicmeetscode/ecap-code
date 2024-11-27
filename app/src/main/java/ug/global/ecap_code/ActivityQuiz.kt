@@ -17,8 +17,8 @@ import ug.global.ecap_code.databinding.ActivityQuizBinding
 
 class ActivityQuiz : AppCompatActivity() {
     val binding by lazy { ActivityQuizBinding.inflate(layoutInflater) }
-    val quizzes = arrayListOf<QuizItem>()
-    val quizAdapter by lazy { QuizAdapter(quizzes, this, lifecycleScope) }
+    private val quizzes = arrayListOf<QuizItem>()
+    private val quizAdapter by lazy { QuizAdapter(quizzes, this, lifecycleScope) }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {

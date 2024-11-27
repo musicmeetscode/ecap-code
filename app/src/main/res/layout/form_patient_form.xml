@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/blood_group"
-                    android:text="@={patient.bloodGroup}" />
+                    android:text="@={patient.blood_group}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/marital_status"
-                    android:text="@={patient.maritalStatus}" />
+                    android:text="@={patient.marital_status}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/first_name"
-                    android:text="@={patient.firstName}" />
+                    android:text="@={patient.f_name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -150,7 +150,7 @@
                     android:layout_margin="8dp"
                     android:hint="@string/last_name"
                     android:inputType="textCapSentences"
-                    android:text="@={patient.lastName}" />
+                    android:text="@={patient.l_name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -167,7 +167,7 @@
                     android:layout_margin="8dp"
                     android:hint="@string/nin"
                     android:inputType="textCapCharacters"
-                    android:text="@={patient.ninPassport}" />
+                    android:text="@={patient.nin}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -185,7 +185,7 @@
                     android:layout_margin="8dp"
                     android:hint="@string/phone"
                     android:inputType="phone"
-                    android:text="@={patient.phoneNumber}" />
+                    android:text="@={patient.phone}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -204,7 +204,7 @@
                     android:layout_margin="8dp"
                     android:hint="@string/dob"
                     android:inputType="date"
-                    android:text="@={patient.dateOfBirth}" />
+                    android:text="@={patient.dob}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/sex"
-                    android:text="@={patient.sexGender}" />
+                    android:text="@={patient.gender}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -257,7 +257,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/other_name"
-                    android:text="@={patient.otherName}" />
+                    android:text="@={patient.mo_name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -410,7 +410,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={patient.lastName}"
+                android:text="@={patient.l_name}"
                 app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
                 app:layout_constraintTop_toTopOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>

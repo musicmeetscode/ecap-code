@@ -25,8 +25,8 @@
                 android:layout_marginVertical="12dp"
                 android:text="@string/finish_assessement"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/memoryGroup"
-                app:layout_constraintStart_toStartOf="@+id/memoryGroup"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout31"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout31"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout31" />
 
             <ug.global.ecap_code.views.EcapTextHeader
@@ -102,7 +102,6 @@
                 android:id="@+id/memoryGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
                 app:text="@string/memory_problems" />
@@ -155,7 +154,7 @@
                 app:text="@string/other_any" />
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup7"
+                android:id="@+id/anaemiaGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -189,12 +188,12 @@
             </ug.global.ecap_code.views.EcapTextHeader>
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup8"
+                android:id="@+id/cardioVascular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup7"
+                app:layout_constraintTop_toBottomOf="@+id/anaemiaGroup"
                 app:text="@string/cardio">
 
             </ug.global.ecap_code.views.EcapRadioGroup>
@@ -208,11 +207,11 @@
                 app:counter="5."
                 app:header="@string/caretaker_needs"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup8" />
+                app:layout_constraintTop_toBottomOf="@+id/cardioVascular" />
 
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup9"
+                android:id="@+id/strainCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -222,23 +221,23 @@
 
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup10"
+                android:id="@+id/depressedMood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup9"
+                app:layout_constraintTop_toBottomOf="@+id/strainCode"
                 app:text="@string/care_mood" />
 
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup11"
+                android:id="@+id/incomeLoss"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup10"
+                app:layout_constraintTop_toBottomOf="@+id/depressedMood"
                 app:text="@string/care_income" />
 
             <ug.global.ecap_code.views.EcapTextHeader
@@ -250,11 +249,11 @@
                 app:counter="6."
                 app:header="@string/_5_behavioral_or_pyscological_symptoms"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup11" />
+                app:layout_constraintTop_toBottomOf="@+id/incomeLoss" />
 
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup12"
+                android:id="@+id/symptomsGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -267,7 +266,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="activityGroup,progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                app:constraint_referenced_ids="activityGroup,progressingGroup,abruptGroup,depressionGroup,ageGroup,anaemiaGroup,textView8,textView9,cardioVascular,textView10,strainCode,depressedMood,incomeLoss,textView11,symptomsGroup"
                 tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
@@ -275,7 +274,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="progressingGroup,abruptGroup,depressionGroup,ageGroup,ecapRadioGroup7,textView8,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                app:constraint_referenced_ids="progressingGroup,abruptGroup,depressionGroup,ageGroup,anaemiaGroup,textView8,textView9,cardioVascular,textView10,strainCode,depressedMood,incomeLoss,textView11,symptomsGroup"
                 tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
@@ -283,7 +282,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="depressionGroup,ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                app:constraint_referenced_ids="depressionGroup,ageGroup,anaemiaGroup,textView9,cardioVascular,textView10,strainCode,depressedMood,incomeLoss,textView11,symptomsGroup"
                 tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
@@ -291,7 +290,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="ageGroup,ecapRadioGroup7,textView9,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                app:constraint_referenced_ids="ageGroup,anaemiaGroup,textView9,cardioVascular,textView10,strainCode,depressedMood,incomeLoss,textView11,symptomsGroup"
                 tools:visibility="visible" />
 
             <androidx.constraintlayout.widget.Group
@@ -299,7 +298,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="ecapRadioGroup7,ecapRadioGroup8,textView10,ecapRadioGroup9,ecapRadioGroup10,ecapRadioGroup11,textView11,ecapRadioGroup12"
+                app:constraint_referenced_ids="anaemiaGroup,cardioVascular,textView10,strainCode,depressedMood,incomeLoss,textView11,symptomsGroup"
                 tools:visibility="visible" />
 
             <ug.global.ecap_code.views.EcapTextHeader
@@ -309,12 +308,12 @@
                 android:layout_marginTop="12dp"
                 app:counter="7."
                 app:header="@string/diagnosis_management"
-                app:layout_constraintEnd_toEndOf="@+id/ecapRadioGroup12"
-                app:layout_constraintStart_toStartOf="@+id/ecapRadioGroup12"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup12" />
+                app:layout_constraintEnd_toEndOf="@+id/symptomsGroup"
+                app:layout_constraintStart_toStartOf="@+id/symptomsGroup"
+                app:layout_constraintTop_toBottomOf="@+id/symptomsGroup" />
 
             <ug.global.ecap_code.views.EcapRadioGroup
-                android:id="@+id/ecapRadioGroup132"
+                android:id="@+id/dementiaPatient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -329,9 +328,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/ecapRadioGroup132"
-                app:layout_constraintStart_toStartOf="@+id/ecapRadioGroup132"
-                app:layout_constraintTop_toBottomOf="@+id/ecapRadioGroup132">
+                app:layout_constraintEnd_toEndOf="@+id/dementiaPatient"
+                app:layout_constraintStart_toStartOf="@+id/dementiaPatient"
+                app:layout_constraintTop_toBottomOf="@+id/dementiaPatient">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/management"

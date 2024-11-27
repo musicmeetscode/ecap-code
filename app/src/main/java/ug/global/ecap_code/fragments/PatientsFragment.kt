@@ -62,7 +62,7 @@ class PatientsFragment : Fragment(), PatientCallBacksFinish {
     override fun newPatientAdded(patient: Patient) {
         patients.add(
             PatientHolder(
-                "${patient.sexGender} - ${patient.age} years",
+                "${patient.gender} - ${patient.age} years",
                 "#SJHAPA${patient.id}",
                 SimpleDateFormat("y-m-dd", Locale.getDefault()).format(Date(patient.timeStamp)),
                 patient.id

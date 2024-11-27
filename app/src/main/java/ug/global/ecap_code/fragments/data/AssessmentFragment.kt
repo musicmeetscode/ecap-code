@@ -38,6 +38,20 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             }
         }
         binding.button.setOnClickListener {
+            asses.memoryProblems = binding.memoryGroup.defaultChecked
+            asses.keyRoles = binding.activityGroup.defaultChecked
+            asses.progressing = binding.progressingGroup.defaultChecked
+            asses.anyOf = binding.abruptGroup.defaultChecked
+            asses.depress = binding.depressionGroup.defaultChecked
+            asses.otherAny = binding.ageGroup.defaultChecked
+            asses.anaemia = binding.anaemiaGroup.defaultChecked
+            asses.cardio = binding.cardioVascular.defaultChecked
+            asses.careIncome = binding.incomeLoss.defaultChecked
+            asses.careMood = binding.depressedMood.defaultChecked
+            asses.caretaker = binding.strainCode.defaultChecked
+            asses.behavior = binding.symptomsGroup.defaultChecked
+            asses.hasDementia = binding.dementiaPatient.defaultChecked
+            asses.management = binding.management.editableText.toString()
             callbacks.assessmentComplete(asses)
         }
     }

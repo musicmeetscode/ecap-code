@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
 import com.google.android.material.radiobutton.MaterialRadioButton
 import ug.global.ecap_code.R
 
@@ -19,6 +20,18 @@ class EcapRadioGroup @JvmOverloads constructor(
     private val radioGroup: RadioGroup
     private val radioYes: MaterialRadioButton
     private val radioNo: MaterialRadioButton
+
+    var defaultChecked: String = "no" // Binding-friendly property
+        set(value) {
+            field = value
+            when (value.lowercase()) {
+                "yes" -> radioYes.isChecked = true
+                "no" -> radioNo.isChecked = true
+            }
+        }
+        get() {
+            return if (radioYes.isChecked) "yes" else "no"
+        }
 
     init {
         // Inflate the layout
@@ -49,6 +62,7 @@ class EcapRadioGroup @JvmOverloads constructor(
         textView.text = text
     }
 
+
     fun isYes(): Boolean {
         return radioYes.isChecked
     }
@@ -67,3 +81,16 @@ class EcapRadioGroup @JvmOverloads constructor(
     }
 }
 
+object CustomBindingAdapters {
+    @JvmStatic
+    @BindingAdapter("defaultChecked")
+    fun setDefaultChecked(view: EcapRadioGroup, value: String?) {
+        // Set the defaultChecked value based on the value from the data binding
+        value?.let {
+            when (it.lowercase()) {
+                "yes" -> view.defaultChecked = "yes"
+                "no" -> view.defaultChecked = "no"
+            }
+        }
+    }
+}
