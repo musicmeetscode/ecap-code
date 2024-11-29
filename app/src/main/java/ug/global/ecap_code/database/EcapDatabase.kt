@@ -41,8 +41,8 @@ interface EcapDAO {
     fun insertAssessment(assessmentForm: AssessmentForm): Long
 
 
-    @Query("SELECT * FROM AssessmentForm WHERE visit=:patient LIMIT 1")
-    fun getPatientAssessment(patient: Int): AssessmentForm
+    @Query("SELECT * FROM AssessmentForm WHERE visit=:visitInfo LIMIT 1")
+    fun getPatientAssessment(visitInfo: Int): AssessmentForm
 
 
     @Query("SELECT * FROM VisitInfo WHERE patient=:patient LIMIT 1")

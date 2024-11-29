@@ -90,44 +90,103 @@ data class AssessmentForm(
     @ColumnInfo @Bindable var hasDementia: String = "no",
     @ColumnInfo @Bindable var management: String = "",
 ) : BaseObservable() {
-    fun getAssessmentSummary(): String {
-        val statements = listOf(
-            "The person has %s forgetfulness and orientation problems." to forgetfulness,
-            "The person %s mood or behavioral problems such as apathy or irritability." to apathy,
-            "The person %s difficulty controlling emotions, often becoming upset, irritable, or tearful." to emotion,
-            "The person %s difficulties carrying out usual work, domestic, or social activities." to activities,
-            "There %s memory and/or orientation problems." to memoryProblems,
-            "The person %s difficulties performing key roles or activities." to keyRoles,
-            "The symptoms have %s present and slowly progressing for at least 6 months." to progressing,
-            "The person %s moderate to severe depression." to depress,
-            "The person %s poor dietary intake, malnutrition, or anaemia." to anaemia,
-            "The person %s cardiovascular risk factors." to cardio,
-            "The carer %s difficulty coping or experiencing strain." to caretaker,
-            "The carer %s a depressed mood." to careMood,
-            "The carer %s facing loss of income or additional expenses due to care needs." to careIncome
-        )
 
-        return buildString {
-            statements.forEach { (template, condition) ->
-                appendLine(template.format(if (condition as Boolean) "has" else "does not have"))
+    fun matchDifference(): String {
+        val diagnosis = getDiagnosis()
+        val matchDifference = if (diagnosis.first == hasDementia) {
+            "Correctly Identified. Match"
+        } else {
+            "Mismatch: Expected '${diagnosis.first}', but got '$hasDementia'\nReason for diagnosis: ${diagnosis.second}"
+        }
+
+        return "$hasDementia\n$matchDifference"
+    }
+
+    private fun getDiagnosis(): Pair<String, String> {
+        val hasMemoryIssues = memoryProblems == "yes"
+        val hasActivityDifficulties = activities
+        val isProgressing = progressing == "yes"
+        val isDepressed = depress == "yes"
+        val unUsualCase = otherAny == "yes"
+        val hasBehavioralSymptoms = behavior == "yes"
+        val hasAbruptSymptoms = anyOf == "yes"
+
+        when {
+            hasMemoryIssues || hasActivityDifficulties -> {
+                when {
+                    isProgressing -> {
+                        // If symptoms are progressing
+                        when {
+                            !isDepressed && !unUsualCase -> {
+                                // No depression and no unusual features, likely dementia
+                                return Pair(
+                                    "Dementia",
+                                    "Symptoms are progressing with memory issues and difficulty in activities, indicating dementia."
+                                )
+                            }
+
+                            unUsualCase -> {
+                                // Unusual features, further investigation needed
+                                return Pair(
+                                    "Unusual dementia features",
+                                    "Symptoms have unusual features, which requires further investigation to rule out other conditions."
+                                )
+                            }
+
+                            isDepressed -> {
+                                // Depression is present
+                                return Pair(
+                                    "Depression",
+                                    "Symptoms with depression suggest that depression could be the cause, requiring treatment for depression."
+                                )
+                            }
+                        }
+                    }
+
+                    else -> {
+                        // If symptoms have not been progressing for 6 months
+                        return when {
+                            hasAbruptSymptoms -> {
+                                // Abrupt onset, likely delirium
+                                Pair(
+                                    "Delirium",
+                                    "Sudden onset of symptoms without a progressive history suggests delirium, requiring immediate medical attention."
+                                )
+                            }
+                            // Symptoms haven't been progressing but no abrupt onset, likely dementia
+                            else -> Pair(
+                                "Dementia",
+                                "Symptoms have not progressed over 6 months, but the pattern suggests dementia. Proceed to evaluate for depression."
+                            )
+                        }
+                    }
+                }
             }
         }
+        // If the person doesn't have memory or activity difficulties, return not dementia
+        return Pair("Dementia Unlikely", "No memory issues and no difficulty performing activities, so dementia is unlikely.")
     }
 
     fun buildAbstract(): String {
-        return "Decline or problems with memory (severe forgetfulness) and orientation ${this.forgetfulness}\n" +
-                "Mood or behavioural problems such as apathy (appearing uninterested) or irritability  ${this.apathy}\n" +
-                "Loss of emotional control-easily upset, irritable, or tearful  ${this.emotion}\n" +
-                "Difficulties in carrying out usual work, domestic, or social activities ${this.activities}\n" +
-                "Are there problems with memory and/or orientation? ${this.memoryProblems}\n" +
-                "Does the person have difficulties in performing key roles/activities? ${this.keyRoles}\n" +
-                "Have the symptoms been present and slowly progressing for at least 6 months? ${this.progressing}\n" +
-                "Does the person have moderate to severe DEPRESSION? ${this.depress}\n" +
-                "Does the person have poor dietary intake, malnutrition, or anaemia? ${this.anaemia}\n" +
-                "Does the person have cardiovascular risk factors? ${this.cardio}\n" +
-                "Is the carer having difficulty coping or experiencing strain? ${this.caretaker}\n" +
-                "Is the carer experiencing depressed mood?  ${this.careMood}\n" +
-                "Is the carer facing loss of income and/or additional expenses because of the needs for care? ${this.careIncome}\n"
+        return "Memory and Orientation Issues:\n" +
+                "- The patient ${if (this.forgetfulness) "has" else "doesn't have"} severe forgetfulness or a decline in memory and orientation.\n" +
+                "\nMood and Behavioral Issues:\n" +
+                "- The patient ${if (this.apathy) "has" else "doesn't have"} apathy (appearing uninterested) or irritability.\n" +
+                "- The patient ${if (this.emotion) "has" else "doesn't have"} loss of emotional control (easily upset, irritable, or tearful).\n" +
+                "\nFunctional Challenges:\n" +
+                "- The patient ${if (this.activities) "has" else "doesn't have"} difficulties carrying out usual work, domestic, or social activities.\n" +
+                "- There ${if (this.memoryProblems == "yes") "are" else "are no"} problems with memory and/or orientation.\n" +
+                "- The patient ${if (this.keyRoles == "yes") "has" else "doesn't have"} difficulties performing key roles or activities.\n" +
+                "- The symptoms ${if (this.progressing == "yes") "have" else "haven't"} been present and slowly progressing for at least 6 months.\n" +
+                "\nHealth and Lifestyle Issues:\n" +
+                "- The patient ${if (this.depress == "yes") "has" else "doesn't have"} moderate to severe depression.\n" +
+                "- The patient ${if (this.anaemia == "yes") "has" else "doesn't have"} poor dietary intake, malnutrition, or anemia.\n" +
+                "- The patient ${if (this.cardio == "yes") "has" else "doesn't have"} cardiovascular risk factors.\n" +
+                "\nCarer Strain and Challenges:\n" +
+                "- The carer ${if (this.caretaker == "yes") "is" else "isn't"} having difficulty coping or experiencing strain.\n" +
+                "- The carer ${if (this.careMood == "yes") "has" else "doesn't have"} a depressed mood.\n" +
+                "- The carer ${if (this.careIncome == "yes") "is" else "isn't"} facing loss of income and/or additional expenses due to caregiving.\n"
+
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -184,6 +243,9 @@ data class Patient(
     @ColumnInfo
     var id: Int = 0
 
+    fun getHash(context: Context): String {
+        return "#SJHA${timeStamp}ECA${id}" + PreferenceManager.getDefaultSharedPreferences(context).getInt("staff", 0)
+    }
 
     @ColumnInfo(defaultValue = "0")
     var online_id: Int = 0
@@ -202,7 +264,8 @@ data class Patient(
             json.put("nationality", this.getFillerDataId(nationality))
             json.put("village", this.getFillerDataId(village))
             json.put("religion", this.getFillerDataId(religion))
-            json.put("reg_no", "#SJHAPA${id}")
+            json.put("from_ecap", true)
+            json.put("reg_no", "#SJHA${timeStamp}ECA${id}" + PreferenceManager.getDefaultSharedPreferences(context).getInt("staff", 0))
             json.put("staff", PreferenceManager.getDefaultSharedPreferences(context).getInt("staff", 0))
             json.remove("dob")
             val keys = json.keys() // Iterator of keys
@@ -222,9 +285,37 @@ data class Patient(
     @ColumnInfo
     var timeStamp: Long = System.currentTimeMillis()
 
-    fun isValid(): Boolean {
-        return f_name.isNotEmpty() && l_name.isNotEmpty() && gender.isNotEmpty() && (age.isNotEmpty() or dob.isNotEmpty())
+    fun isValid(): Pair<Boolean, List<String>> {
+        val errors = mutableListOf<String>()
+
+        // Check if the first name is empty
+        if (f_name.isEmpty()) {
+            errors.add("First name is required.")
+        }
+
+        // Check if the last name is empty
+        if (l_name.isEmpty()) {
+            errors.add("Last name is required.")
+        }
+
+        // Check if gender is empty
+        if (gender.isEmpty()) {
+            errors.add("Gender is required.")
+        }
+
+        // Check if either age or date of birth is provided
+        if (age.isEmpty() && dob.isEmpty()) {
+            errors.add("Either age or date of birth is required.")
+        }
+
+        // Return true if no errors, otherwise return false and the error messages
+        return if (errors.isEmpty()) {
+            Pair(true, emptyList())
+        } else {
+            Pair(false, errors)
+        }
     }
+
 
 }
 
@@ -303,3 +394,4 @@ class QuizItem(
 }
 
 data class PatientHolder(var name: String, var hash: String, var created: String, var id: Int)
+data class FeedbackItem(var name: String, var hash: String, var diagosis: String)

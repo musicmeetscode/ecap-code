@@ -16,7 +16,7 @@ interface PatientDataCallBacks {
     fun assessmentComplete(asses: AssessmentForm)
     fun getFillerData(type: String, view: AutoCompleteTextView)
     fun clearErrors()
-    fun setErrors(stringArray: Array<String>)
+    fun setErrors(stringArray: List<String>)
 }
 
 interface PatientCallBacksFinish {

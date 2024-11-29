@@ -96,7 +96,7 @@
     <string name="next_page">Next Page</string>
     <string name="previous_page">Previous Page</string>
     <string name="school_timetable">"mhGap Training Content "</string>
-    <string name="complete_module">Complete Module ...</string>
+    <string name="complete_module">Complete Module …</string>
     <string name="firstt">Pre - Training Assessment</string>
     <string name="post_tra">Post Training Assessment</string>
     <string name="diagnosis_management"><![CDATA[Diagnosis & Management]]></string>
@@ -104,4 +104,14 @@
     <string name="recommended_management">Recommended management</string>
     <string name="upload">UPLOAD</string>
     <string name="please_wait">Please wait while we upload %1$d records</string>
+    <string name="final_diagnosis">Final diagnosis</string>
+    <string name="recent_reco">Feedback on recent records</string>
+    <string-array name="diagnosis">
+        <item>Dementia Unlikely</item>
+        <item>Delirium</item>
+        <item>Depression</item>
+        <item>Unusual dementia features</item>
+        <item>Dementia with behavioural isssues</item>
+        <item>Dementia</item>
+    </string-array>
 </resources>

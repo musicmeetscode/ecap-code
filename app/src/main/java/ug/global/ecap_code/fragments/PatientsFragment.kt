@@ -63,7 +63,7 @@ class PatientsFragment : Fragment(), PatientCallBacksFinish {
         patients.add(
             PatientHolder(
                 "${patient.gender} - ${patient.age} years",
-                "#SJHAPA${patient.id}",
+                patient.getHash(requireContext()),
                 SimpleDateFormat("y-m-dd", Locale.getDefault()).format(Date(patient.timeStamp)),
                 patient.id
             )

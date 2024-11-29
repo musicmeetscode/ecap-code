@@ -55,7 +55,9 @@ class LoginBottomSheet : BottomSheetDialogFragment() {
 
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
                         .putString("token", outerResponse.getString("token"))
+                        .putInt("staff", outerResponse.getInt("staff"))
                         .putString("user", outerResponse.getJSONObject("user").getString("first_name"))
+                        .putInt("user_id", outerResponse.getJSONObject("user").getInt("id"))
                         .apply()
 
                     callbacks.loggedIn(outerResponse)

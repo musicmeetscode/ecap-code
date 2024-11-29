@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import ug.global.ecap_code.R
 import ug.global.ecap_code.database.AssessmentForm
 import ug.global.ecap_code.databinding.FormAssessmentFormBinding
 import ug.global.ecap_code.util.PatientDataCallBacks
@@ -27,6 +29,10 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             binding.depressionGroup to binding.group4,
             binding.ageGroup to binding.group5,
         )
+        val choices = resources.getStringArray(R.array.diagnosis)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, choices)
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
+        binding.diagnosis.setAdapter(adapter)
         views.forEach {
             it.first.setOnCheckedChangeListener { show ->
                 val pos = views.indexOf(it)
@@ -50,7 +56,7 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             asses.careMood = binding.depressedMood.defaultChecked
             asses.caretaker = binding.strainCode.defaultChecked
             asses.behavior = binding.symptomsGroup.defaultChecked
-            asses.hasDementia = binding.dementiaPatient.defaultChecked
+            asses.hasDementia = binding.diagnosis.editableText.toString()
             asses.management = binding.management.editableText.toString()
             callbacks.assessmentComplete(asses)
         }

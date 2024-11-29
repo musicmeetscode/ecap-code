@@ -36,7 +36,7 @@
         android:layout_width="177dp"
         android:layout_height="wrap_content"
         android:text="@string/feedback_on_your_performance_on_demetia_management"
-        app:layout_constraintBottom_toTopOf="@+id/quizBUtton"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -54,52 +54,24 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.46" />
 
-    <TextView
-        android:id="@+id/quizBUtton"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="177dp"
-        android:layout_height="wrap_content"
-        android:text="67% accurracy"
-        app:icon="@drawable/baseline_school_24"
-        app:layout_constraintBottom_toTopOf="@+id/ecapTextHeader"
-        app:layout_constraintStart_toStartOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:strokeColor="@color/md_theme_primary"
-        app:strokeWidth="1dp" />
-
     <ug.global.ecap_code.views.EcapTextHeader
         android:id="@+id/ecapTextHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         app:counter="1. "
-        app:header="@string/strengths"
+        app:header="@string/recent_reco"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:layout_editor_absoluteX="12dp" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
-        app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.69" />
-
-
-    <ug.global.ecap_code.views.EcapTextHeader
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        app:counter="2. "
-        app:header="@string/improve"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        tools:layout_editor_absoluteX="12dp" />
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader"
+        tools:layout_editor_absoluteX="1dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

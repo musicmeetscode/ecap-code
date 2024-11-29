@@ -78,21 +78,24 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
 
 
     override fun infoComplete(patient: Patient) {
-        if (patient.isValid()) {
+        if (patient.isValid().first) {
+            clearErrors()
             binding.viewPager.currentItem = 1
             patientInfo = patient
         } else {
-            setErrors(arrayOf("PLease fill all fields and try again"))
+            setErrors(patient.isValid().second)
         }
     }
 
     override fun vitalsComplete(visit: VisitInfo) {
         visitInfo = visit
+        clearErrors()
         binding.viewPager.currentItem = 2
     }
 
     override fun assessmentComplete(asses: AssessmentForm) {
         assessmentInfo = asses
+        clearErrors()
         lifecycleScope.launch(IO) {
             EcapDatabase.getInstance(this@DataActivity).ecapDao().apply {
                 val newId = this.insertPatient(patientInfo)
@@ -127,10 +130,10 @@ class DataActivity : AppCompatActivity(), PatientDataCallBacks {
         binding.errorText.isVisible = false
     }
 
-    override fun setErrors(stringArray: Array<String>) {
-        val error = ""
+    override fun setErrors(stringArray: List<String>) {
+        var error = ""
         stringArray.forEach {
-            error.plus("-$it")
+            error += ("-$it\n")
         }
         binding.errorText.text = error
         binding.errorText.isVisible = true
