@@ -337,7 +337,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/dementiaPatient"
                 app:layout_constraintStart_toStartOf="@+id/dementiaPatient"
-                app:layout_constraintTop_toBottomOf="@+id/dementiaPatient">
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout32">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/management"
@@ -345,6 +345,23 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/recommended_management"
                     android:inputType="textCapSentences|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout32"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/dementiaPatient"
+                app:layout_constraintStart_toStartOf="@+id/dementiaPatient"
+                app:layout_constraintTop_toBottomOf="@+id/dementiaPatient">
+
+                <AutoCompleteTextView
+                    android:id="@+id/severity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/diagnosis_severity" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

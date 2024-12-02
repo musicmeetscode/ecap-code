@@ -155,11 +155,7 @@ class ActivityMain : AppCompatActivity(), AppCallBacks {
                             .put("history_of_present_illiness", visit.history_of_present_illiness)
                             .put("physical_examination", visit.physical_examination).put("review_of_systems", visit.review_of_systems)
                             .put("recommendations", assessment.management).put(
-                                "preliminary_diagnosis", if (assessment.hasDementia == "yes") {
-                                    "Dementia"
-                                } else {
-                                    "None/Delirium"
-                                }
+                                "preliminary_diagnosis", assessment.hasDementia
                             ).put("abstract", assessment.buildAbstract())
                         val patientJsonObject = JSONObject().put("patient", patientJson).put("visit", visitJson).put("clerk", clerkJson)
                         Log.e("TAG", "onOptionsItemSelected: " + patientJsonObject)

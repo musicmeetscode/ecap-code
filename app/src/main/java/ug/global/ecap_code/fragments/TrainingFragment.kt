@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class TrainingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.quizBUtton.setOnClickListener {
+            PreferenceManager.getDefaultSharedPreferences(requireContext()).edit().remove("not_trained").apply()
             requireContext().startActivity(Intent(requireContext(), ActivityQuiz::class.java))
         }
         lifecycleScope.launch(IO) {

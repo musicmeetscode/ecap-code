@@ -87,7 +87,7 @@ data class AssessmentForm(
     @ColumnInfo @Bindable var careMood: String = "no",
     @ColumnInfo @Bindable var careIncome: String = "no",
     @ColumnInfo @Bindable var behavior: String = "no",
-    @ColumnInfo @Bindable var hasDementia: String = "no",
+    @ColumnInfo @Bindable var hasDementia: String = "",
     @ColumnInfo @Bindable var management: String = "",
 ) : BaseObservable() {
 

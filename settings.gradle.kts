@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ecap-CODE"
+rootProject.name = "eCap-CoDe"
 include(":app")

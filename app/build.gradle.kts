@@ -62,6 +62,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.room.runtime)
+
+    implementation(libs.zoomage)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.room.compiler)
 }

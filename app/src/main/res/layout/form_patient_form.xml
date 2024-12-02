@@ -190,18 +190,23 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/dateLayout"
                 android:layout_width="0dp"
+
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:startIconDrawable="@drawable/baseline_calendar_month_24"
+
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout14">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:id="@+id/dobField"
+                    android:enabled="false"
                     android:hint="@string/dob"
                     android:inputType="date"
                     android:text="@={patient.dob}" />
@@ -221,6 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:hint="@string/age"
+                    android:id="@+id/ageField"
                     android:inputType="number"
                     android:text="@={patient.age}" />
             </com.google.android.material.textfield.TextInputLayout>

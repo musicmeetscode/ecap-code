@@ -26,7 +26,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/buttonPrevious"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
+    <com.jsibbold.zoomage.ZoomageView
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_maxScale="8"
+
+        app:zoomage_minScale="0.6"
+        app:zoomage_restrictBounds="false"
+        app:zoomage_translatable="true"
+        app:zoomage_zoomable="true"
+
         android:id="@+id/pdfView"
         android:layout_width="0dp"
         android:layout_height="0dp"

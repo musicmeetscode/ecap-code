@@ -28,7 +28,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
@@ -36,7 +36,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="With this tool, get accurate information on dementia asseessment, management and care"
-        app:layout_constraintBottom_toTopOf="@+id/quizBUtton"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView18"
@@ -61,11 +60,11 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/take_quiz"
+        android:text="@string/restart_quiz"
         app:icon="@drawable/baseline_school_24"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
         app:strokeColor="@color/md_theme_primary"
         app:strokeWidth="1dp" />
 
@@ -74,10 +73,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="20dp"
         app:counter="1. "
         app:header="@string/firstt"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/quizBUtton"
         tools:layout_editor_absoluteX="12dp" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -101,7 +99,7 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="@+id/ecapTextHeader"
         app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
@@ -112,7 +110,8 @@
     <ListView
         android:id="@+id/listView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ecapTextHeader"
         app:layout_constraintStart_toStartOf="@+id/ecapTextHeader"
         app:layout_constraintTop_toBottomOf="@+id/ecapTextHeader3" />

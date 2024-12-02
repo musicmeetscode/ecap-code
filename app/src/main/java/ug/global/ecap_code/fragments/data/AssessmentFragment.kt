@@ -32,7 +32,13 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
         val choices = resources.getStringArray(R.array.diagnosis)
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, choices)
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
+
+
+        val severity = resources.getStringArray(R.array.diagnosis_severity)
+        val adapterSevere = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, severity)
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         binding.diagnosis.setAdapter(adapter)
+        binding.severity.setAdapter(adapterSevere)
         views.forEach {
             it.first.setOnCheckedChangeListener { show ->
                 val pos = views.indexOf(it)
@@ -56,7 +62,7 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             asses.careMood = binding.depressedMood.defaultChecked
             asses.caretaker = binding.strainCode.defaultChecked
             asses.behavior = binding.symptomsGroup.defaultChecked
-            asses.hasDementia = binding.diagnosis.editableText.toString()
+            asses.hasDementia = binding.severity.editableText.toString() + binding.diagnosis.editableText.toString()
             asses.management = binding.management.editableText.toString()
             callbacks.assessmentComplete(asses)
         }

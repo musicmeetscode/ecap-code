@@ -40,7 +40,11 @@ class ActivityQuiz : AppCompatActivity() {
                 PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("not_quizzed_post", false).apply()
                 finish()
                 startActivity(Intent(this, ActivityMain::class.java))
+            } else {
+                finish()
+                startActivity(Intent(this, ActivityMain::class.java))
             }
+
         }
         lifecycleScope.launch(IO) {
             val quizzesInner = EcapDatabase.getInstance(this@ActivityQuiz).ecapDao().getQuiz()

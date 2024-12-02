@@ -106,6 +106,8 @@
     <string name="please_wait">Please wait while we upload %1$d records</string>
     <string name="final_diagnosis">Final diagnosis</string>
     <string name="recent_reco">Feedback on recent records</string>
+    <string name="restart_quiz">Restart Quiz</string>
+    <string name="diagnosis_severity">Diagnosis Severity</string>
     <string-array name="diagnosis">
         <item>Dementia Unlikely</item>
         <item>Delirium</item>
@@ -113,5 +115,11 @@
         <item>Unusual dementia features</item>
         <item>Dementia with behavioural isssues</item>
         <item>Dementia</item>
+    </string-array>
+
+    <string-array name="diagnosis_severity">
+        <item>Mild </item>
+        <item>Moderate </item>
+        <item>Severe </item>
     </string-array>
 </resources>
