@@ -108,6 +108,7 @@
     <string name="recent_reco">Feedback on recent records</string>
     <string name="restart_quiz">Restart Quiz</string>
     <string name="diagnosis_severity">Diagnosis Severity</string>
+    <string name="page_1_of_12">Page %1$d of %2$d</string>
     <string-array name="diagnosis">
         <item>Dementia Unlikely</item>
         <item>Delirium</item>

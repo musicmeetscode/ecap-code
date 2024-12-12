@@ -45,7 +45,6 @@ class ActivityMhGap : AppCompatActivity() {
             val file = downloadUrl()
             try {
 
-
                 val descriptor = ParcelFileDescriptor.open(file, MODE_READ_ONLY)
                 pdfRenderer = PdfRenderer(descriptor)
                 if (pdfRenderer.pageCount > 0) {

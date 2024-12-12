@@ -62,7 +62,7 @@ class AssessmentFragment(private var callbacks: PatientDataCallBacks) : Fragment
             asses.careMood = binding.depressedMood.defaultChecked
             asses.caretaker = binding.strainCode.defaultChecked
             asses.behavior = binding.symptomsGroup.defaultChecked
-            asses.hasDementia = binding.severity.editableText.toString() + binding.diagnosis.editableText.toString()
+            asses.hasDementia = binding.severity.editableText.toString() + " " + binding.diagnosis.editableText.toString()
             asses.management = binding.management.editableText.toString()
             callbacks.assessmentComplete(asses)
         }

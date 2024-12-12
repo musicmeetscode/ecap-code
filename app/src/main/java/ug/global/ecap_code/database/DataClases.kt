@@ -169,12 +169,6 @@ data class AssessmentForm(
 
     fun buildAbstract(): String {
         return "Memory and Orientation Issues:\n" +
-                "- The patient ${if (this.forgetfulness) "has" else "doesn't have"} severe forgetfulness or a decline in memory and orientation.\n" +
-                "\nMood and Behavioral Issues:\n" +
-                "- The patient ${if (this.apathy) "has" else "doesn't have"} apathy (appearing uninterested) or irritability.\n" +
-                "- The patient ${if (this.emotion) "has" else "doesn't have"} loss of emotional control (easily upset, irritable, or tearful).\n" +
-                "\nFunctional Challenges:\n" +
-                "- The patient ${if (this.activities) "has" else "doesn't have"} difficulties carrying out usual work, domestic, or social activities.\n" +
                 "- There ${if (this.memoryProblems == "yes") "are" else "are no"} problems with memory and/or orientation.\n" +
                 "- The patient ${if (this.keyRoles == "yes") "has" else "doesn't have"} difficulties performing key roles or activities.\n" +
                 "- The symptoms ${if (this.progressing == "yes") "have" else "haven't"} been present and slowly progressing for at least 6 months.\n" +
